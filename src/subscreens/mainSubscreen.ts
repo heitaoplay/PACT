@@ -1,0 +1,161 @@
+import { BaseSubscreen } from "zois-core/ui";
+import { DeviousPadlockSubscreen } from "./deviousPadlockSubscreen";
+import { RemoteControlSubscreen } from "./remoteControlSubscreen";
+import { syncStorage } from "modules/storage";
+import { MOD_DATA } from "zois-core";
+import { StyleModule, TypeModule } from "zois-core/shard-modules";
+import { ProfilesSubscreen } from "./profilesSubscreen";
+import { Bug, Code2, createElement, GitPullRequest, PenSquare } from "lucide";
+import { getText } from "zois-core/localization";
+import { GITHUB_REPO_URL } from "src/constants";
+import { showChangelogModal } from "zois-core/changelogs";
+import lockClosedImage from "images/pact-lock-closed.png";
+import lockUnlockingImage from "images/pact-lock-unlocking.png";
+import lockUnlockedImage from "images/pact-lock-fully-unlocked.png";
+
+export class MainSubscreen extends BaseSubscreen {
+    public get name(): string {
+        return "锁契 · PACT";
+    }
+
+    public onLoad(): void {
+        [
+            new DeviousPadlockSubscreen(),
+            new ProfilesSubscreen(),
+            new RemoteControlSubscreen()
+        ].forEach((s, i) => {
+            const btn = this.createButton({
+                text: s.buttonText,
+                x: 220,
+                y: 240 + i * 110,
+                width: 700,
+                padding: 2,
+                height: 90,
+                icon: s.buttonIcon,
+                modules: {
+                    text: [
+                        new StyleModule({
+                            maxWidth: "75%"
+                        })
+                    ]
+                }
+            });
+            btn.style.fontWeight = "bold";
+            btn.addEventListener("click", () => {
+                this.setSubscreen(s);
+            });
+        });
+
+        // 锁状态图例：展示三张状态图标，让用户直观理解锁定/解锁过程
+        this.createText({
+            text: getText("common.lock_status_legend"),
+            x: 220,
+            y: 580,
+            width: 700,
+            height: 40
+        });
+
+        const states = [
+            { image: lockClosedImage, label: getText("common.lock_state_closed") },
+            { image: lockUnlockingImage, label: getText("common.lock_state_unlocking") },
+            { image: lockUnlockedImage, label: getText("common.lock_state_unlocked") }
+        ];
+        states.forEach((state, i) => {
+            const x = 250 + i * 220;
+            this.createImage({
+                src: state.image,
+                alt: state.label,
+                x,
+                y: 630,
+                width: 120,
+                height: 120
+            });
+            this.createText({
+                text: state.label,
+                x: x - 30,
+                y: 760,
+                width: 180,
+                height: 30
+            }).style.textAlign = "center";
+        });
+
+        this.createCard({
+            name: getText("common.version"),
+            value: MOD_DATA.version,
+            anchor: "bottom-right",
+            icon: createElement(GitPullRequest),
+            x: 80,
+            y: 65,
+            width: 220,
+            modules: {
+                value: [
+                    new TypeModule({ duration: 850 })
+                ]
+            }
+        });
+
+        this.createButton({
+            x: 80,
+            y: 200,
+            width: 90,
+            height: 90,
+            anchor: "bottom-right",
+            icon: createElement(Bug),
+            tooltip: {
+                text: getText("tooltips.report_bug_or_suggest_feature"),
+                position: "left"
+            },
+            href: GITHUB_REPO_URL + "/issues",
+            modules: {
+                base: [
+                    new StyleModule({
+                        zIndex: "10"
+                    })
+                ]
+            }
+        });
+
+        this.createButton({
+            x: 80,
+            y: 300,
+            width: 90,
+            height: 90,
+            anchor: "bottom-right",
+            icon: createElement(Code2),
+            tooltip: {
+                text: getText("tooltips.view_source_code_on_github"),
+                position: "left"
+            },
+            href: GITHUB_REPO_URL,
+            modules: {
+                base: [
+                    new StyleModule({
+                        zIndex: "10"
+                    })
+                ]
+            }
+        });
+
+        this.createButton({
+            x: 80,
+            y: 400,
+            width: 90,
+            height: 90,
+            anchor: "bottom-right",
+            icon: createElement(PenSquare),
+            variant: "filled",
+            tooltip: {
+                text: getText("tooltips.view_changelog"),
+                position: "left"
+            },
+            onClick: showChangelogModal
+        });
+    }
+
+    public exit(): void {
+        super.exit();
+        syncStorage();
+        this.setSubscreen(null);
+        PreferenceSubscreenExtensionsClear();
+    }
+}

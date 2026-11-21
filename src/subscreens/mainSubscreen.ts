@@ -1,14 +1,15 @@
 import { BaseSubscreen } from "zois-core/ui";
 import { DeviousPadlockSubscreen } from "./deviousPadlockSubscreen";
 import { RemoteControlSubscreen } from "./remoteControlSubscreen";
-import { syncStorage } from "modules/storage";
 import { MOD_DATA } from "zois-core";
 import { StyleModule, TypeModule } from "zois-core/shard-modules";
 import { ProfilesSubscreen } from "./profilesSubscreen";
 import { Bug, Code2, createElement, GitPullRequest, PenSquare } from "lucide";
-import { getText } from "zois-core/localization";
+import { t as getText } from "src/modules/i18n";
 import { GITHUB_REPO_URL } from "src/constants";
 import { showChangelogModal } from "zois-core/changelogs";
+import { PACT_LOCALES, LOCALE_LABELS, switchLocale as loadLocalePack } from "src/modules/i18n";
+import { modStorage, syncStorage } from "modules/storage";
 import lockClosedImage from "images/pact-lock-closed.png";
 import lockUnlockingImage from "images/pact-lock-unlocking.png";
 import lockUnlockedImage from "images/pact-lock-fully-unlocked.png";
@@ -19,6 +20,31 @@ export class MainSubscreen extends BaseSubscreen {
     }
 
     public onLoad(): void {
+        // 语言切换器：auto = 跟随游戏语言，其余为插件内手动指定
+        const localeOptions: string[] = ["auto", ...PACT_LOCALES];
+        const currentOverride = modStorage.misc?.localeOverride ?? "auto";
+        this.createText({
+            text: getText("settings.language.label"),
+            x: 220,
+            y: 140,
+            width: 700,
+            height: 40
+        });
+        this.createBackNextButton({
+            x: 220,
+            y: 180,
+            width: 700,
+            height: 60,
+            currentIndex: Math.max(0, localeOptions.indexOf(currentOverride)),
+            items: localeOptions.map((code) => [LOCALE_LABELS[code] ?? code, code]),
+            onChange: (value: string) => {
+                modStorage.misc ??= {};
+                modStorage.misc.localeOverride = value;
+                syncStorage();
+                if (value !== "auto") void loadLocalePack(value);
+            }
+        });
+
         [
             new DeviousPadlockSubscreen(),
             new ProfilesSubscreen(),

@@ -10,7 +10,8 @@ import { StyleModule } from "zois-core/shard-modules";
 import { cloneDeep } from "lodash-es";
 import { SyncPadlockMessageDto } from "dto/syncPadlockMessageDto";
 import { logger } from "zois-core/logging";
-import { getText } from "zois-core/localization";
+import { t as getText } from "src/modules/i18n";
+import { sendLocalizedAction } from "src/modules/l10nMessage";
 import { RemovePadlockMessageDto } from "src/dto/removePadlockMessageDto";
 import { UpdatePadlockMessageDto } from "src/dto/updatePadlockMessageDto";
 
@@ -233,9 +234,7 @@ export class DeviousPadlockSettingsSubscreen extends BaseSubscreen {
                         if (result.valid) {
                             await changePadlockSettings(this.itemGroupName, result.data);
                             const itemName = smartGetItemName(InventoryGet(Player, this.itemGroupName)!);
-                            messagesManager.sendAction(
-                                getText("actions.action_self_config_changed", { name: getNickname(Player), item: itemName })
-                            );
+                            sendLocalizedAction("actions.action_self_config_changed", { name: getNickname(Player), item: itemName });
                         }
                     } else {
                         messagesManager.sendPacket<UpdatePadlockMessageDto>("changePadlockSettings", {
@@ -426,9 +425,7 @@ export class DeviousPadlockSettingsSubscreen extends BaseSubscreen {
                                             InventoryUnlock(Player, this.itemGroupName);
                                             ChatRoomCharacterUpdate(Player);
                                             syncStorage();
-                                            messagesManager.sendAction(
-                                                getText("actions.action_self_unlocked", { name: getNickname(Player), item: itemName })
-                                            );
+                                            sendLocalizedAction("actions.action_self_unlocked", { name: getNickname(Player), item: itemName });
                                             this.exit();
                                         }
                                     } else {
@@ -1051,10 +1048,32 @@ export class DeviousPadlockSettingsSubscreen extends BaseSubscreen {
         });
     }
 
-    public onExit() {
+    public onExit(): void {
+        // 退出界面时必须清理全局键盘/点击监听，否则残留监听会拦截退格键、
+        // 并尝试 focus 已销毁的密码输入框，导致整个游戏打字异常。
+        if (this.generalKeyDownListener) {
+            window.removeEventListener("keydown", this.generalKeyDownListener);
+            this.generalKeyDownListener = null;
+        }
+        if (this.syncingClickListener) {
+            window.removeEventListener("click", this.syncingClickListener);
+            this.syncingClickListener = null;
+        }
         if (this.mode === "inspect-padlock") {
             if (ChatRoomData !== null) CommonSetScreen("Online", "ChatRoom");
             else CommonSetScreen("Room", "MainHall");
+        }
+    }
+
+    public onUnload(): void {
+        // 双保险：subscreen 被卸载（如 setSubscreen 切换）时也清理
+        if (this.generalKeyDownListener) {
+            window.removeEventListener("keydown", this.generalKeyDownListener);
+            this.generalKeyDownListener = null;
+        }
+        if (this.syncingClickListener) {
+            window.removeEventListener("click", this.syncingClickListener);
+            this.syncingClickListener = null;
         }
     }
 }

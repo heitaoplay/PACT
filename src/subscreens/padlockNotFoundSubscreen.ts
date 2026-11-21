@@ -1,5 +1,5 @@
 import { BaseSubscreen } from "zois-core/ui";
-import { getText } from "zois-core/localization";
+import { t as getText } from "src/modules/i18n";
 
 /**
  * 当检查锁时拿不到锁配置（未同步 / 数据损坏 / 非本插件锁）时显示，

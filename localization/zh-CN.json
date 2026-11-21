@@ -109,6 +109,9 @@
             "unlock_by_key_note": "<b>1.</b> 拥有此锁钥匙的人（锁的主人、符合最低身份的人，以及成员编号在锁上的人）",
             "unlock_by_timer_note": "<b>2.</b> 计时到期时（如果锁上设定了计时）",
             "unlock_by_code_note": "<b>3.</b> 输入正确密码时（如果锁接受密码）"
+        },
+        "language": {
+            "label": "插件语言"
         }
     },
     "actions": {
@@ -119,7 +122,8 @@
         "action_unlocked_by_code": "$sender 输入了正确密码，解开了 $name 的 $item 上的契锁",
         "action_cheat_blocked": "$name 尝试使用作弊指令 $cmd",
         "action_self_config_changed": "$name 修改了 <possessive> $item 上的锁设置",
-        "action_self_unlocked": "$name 输入了正确密码，解开了 <possessive> $item 上的契锁"
+        "action_self_unlocked": "$name 输入了正确密码，解开了 <possessive> $item 上的契锁",
+        "action_cooldown": "[契锁] 检测到锁反复重现，已暂停自动恢复 $minutes 分钟。若有冲突，请让钥匙持有人取下冲突的锁。"
     },
     "remote": {
         "reject_not_in_room": "对方现在不在房间里",

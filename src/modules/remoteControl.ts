@@ -3,7 +3,8 @@ import { getNickname } from "zois-core";
 import { hookFunction, HookPriority } from "zois-core/mod-sdk";
 import { messagesManager } from "zois-core/messaging";
 import { toastsManager } from "zois-core/toasts";
-import { getText } from "zois-core/localization";
+import { t as getText } from "src/modules/i18n";
+import { sendLocalizedAction } from "src/modules/l10nMessage";
 
 
 export let remoteControlIsInteracting: boolean = false;
@@ -110,7 +111,7 @@ export function loadRemoteControl(): void {
 		ChatRoomCharacterUpdate(Player);
 		messagesManager.sendLocal(getText("remote.remote_changed", { name: senderName ?? "", num: senderNumber }));
 		if (modStorage.remoteControl.notifyOthers ?? true) {
-			messagesManager.sendAction(getText("remote.remote_action", { name: getNickname(Player) }));
+			sendLocalizedAction("remote.remote_action", { name: getNickname(Player) });
 		}
 		remoteControlControllers.splice(remoteControlControllers.indexOf(senderNumber), 1);
 		return {

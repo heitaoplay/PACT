@@ -1,0 +1,145 @@
+{
+    "toasts": {
+        "mod_loaded": "$name 已載入",
+        "mod_updated": "鎖契 · PACT 已更新到新版本",
+        "correct_combination": "密碼正確",
+        "profile_saved": "設定已儲存",
+        "combination_reset": "密碼已重設",
+        "timer_reset": "計時已重設",
+        "profile_applied": "設定已套用到所選掛鎖"
+    },
+    "dialogs": {
+        "confirm_config_deleting": "確定要刪除這個設定吗？",
+        "name_of_profile": "設定名称",
+        "confirm_profile_overwriting": "已存在同名設定，確定要覆蓋它吗？",
+        "confirm_padlock_removing": "確定要移除掛鎖吗？"
+    },
+    "tooltips": {
+        "report_bug_or_suggest_feature": "回饋問題或提建議",
+        "view_source_code_on_github": "在 GitHub 檢視原始碼",
+        "export_profile": "匯出掛鎖設定",
+        "view_changelog": "檢視更新紀錄"
+    },
+    "common": {
+        "devious_padlock": "契鎖",
+        "compat_padlock": "契鎖（相容狗鎖）",
+        "pact_padlock": "鎖契 · 契約掛鎖",
+        "lock_tooltip": "已被鎖契的契約掛鎖鎖住",
+        "lock_status_legend": "鎖狀態說明",
+        "lock_state_closed": "已鎖定",
+        "lock_state_unlocking": "解鎖中",
+        "lock_state_unlocked": "已解除",
+        "version": "版本",
+        "minimum_roles": {
+            "public": "所有人",
+            "friend": "好友",
+            "whitelist": "白名单",
+            "family": "家人",
+            "lover": "戀人",
+            "owner": "主人"
+        },
+        "save": "儲存",
+        "reset": "重設",
+        "inspect_padlock": "檢查鎖",
+        "padlock_not_synced_title": "無法讀取鎖的設定",
+        "padlock_not_synced_body": "$group 上的鎖設定尚未同步到本機。可能是剛被上鎖、或這把鎖來自其他外掛。請稍等片刻再試，或請鑰匙持有人重新上鎖。可用退出按鈕或 Esc 關閉此視窗。"
+    },
+    "settings": {
+        "enabled": "啟用",
+        "devious_padlock": {
+            "minimum_role_to_put_padlock": "允許上鎖的最低身分",
+            "description": "契鎖一旦鎖上，佩戴者自己無法取下。你可以在鎖的設定裡新增備註、設定鑰匙權限。預設情況下這类鎖處於關閉狀態、不能被用於你身上，但你隨時可以變更。",
+            "escape_tip": "提示：如果難度不高，魔法學校的女巫可以幫你取下契鎖。"
+        },
+        "profiles": {
+            "name": "設定方案",
+            "profiles_empty": "尚未設定方案。"
+        },
+        "remote_control": {
+            "name": "遠端控制",
+            "notify_others": "通知他人",
+            "minimum_role_to_connect_remotely": "允許遠端連線的最低身分",
+            "description": "遠端控制讓被授權的使用者遠端改變你的外觀，不需要和你在同一個房間。如果遠端控制關閉，任何人都不能對你使用。輸入 \"/connect [成員編號]\" 進行遠端連線。"
+        },
+        "devious_padlock_editor": {
+            "base_padlocks": {
+                "exclusive_padlock": "專屬掛鎖",
+                "lovers_padlock": "戀人掛鎖",
+                "owner_padlock": "主人掛鎖"
+            },
+            "tabs": {
+                "general": "一般",
+                "locking": "上鎖",
+                "key_holders": "鑰匙持有人",
+                "note": "備註",
+                "advanced": "進階",
+                "syncing": "同步"
+            },
+            "protected_from_cheats": "防作弊保護",
+            "member_number_on_padlock": "鎖上的成員編號：",
+            "padlock_can_be_unlocked": "可以解鎖此鎖的人：",
+            "enter_combination": "輸入密碼：",
+            "password_placeholder": "密碼",
+            "pin_placeholder": "數字密碼",
+            "remove_padlock": "移除掛鎖",
+            "timer_expires_at": "<b>計時到期時間：</b>",
+            "combination": "<b>密碼</b>",
+            "type_label": "類型：",
+            "combination_placeholder": "密碼",
+            "unlock_time": "<b>解鎖時間</b>",
+            "time_placeholder": "時間",
+            "base_lock": "<b>基礎鎖</b>",
+            "additional_unlock_methods": "除鑰匙外，還可以通过其他方式解鎖此鎖",
+            "base_lock_description": "掛鎖的擁有者（最初上鎖的人）可以設定在 BC 中使用的基礎鎖。這能減少因他人改动而觸發的次數。非專屬基礎鎖會停用「成員編號」鑰匙持有人，并強制「最低身分」至少與基礎鎖一致。",
+            "minimum_role": "最低身分",
+            "member_numbers": "成員編號",
+            "minimum_role_description": "始終拥有此鎖鑰匙的最低身分，必须滿足基礎鎖的最低要求。",
+            "member_numbers_description": "始終拥有此鎖鑰匙的成員編號。基礎鎖非「專屬」时不可用。",
+            "note_placeholder": "你可以留下備註，其他使用鎖契 · PACT 的人可以看到",
+            "prevent_cheat_commands": "阻止作弊指令執行",
+            "zones_you_can_sync": "可與所選設定同步的部位",
+            "zones_you_cant_sync": "因限制無法與所選設定同步的部位",
+            "zones_to_sync": "要與設定同步的部位",
+            "zones_already_synced": "已同步的部位",
+            "profile_heading": "<b>設定</b>",
+            "current_config": "当前設定",
+            "current_config_description": "[当前掛鎖設定]",
+            "sync_padlocks": "同步掛鎖",
+            "sync_description": "將指定的掛鎖與指定的設定同步",
+            "unlock_by_key_note": "<b>1.</b> 拥有此鎖鑰匙的人（鎖的主人、符合最低身分的人，以及成員編號在鎖上的人）",
+            "unlock_by_timer_note": "<b>2.</b> 計時到期时（如果鎖上设定了計時）",
+            "unlock_by_code_note": "<b>3.</b> 輸入正確密碼时（如果鎖接受密碼）"
+        },
+        "language": {
+            "label": "外掛語言"
+        }
+    },
+    "actions": {
+        "action_reappear_one": "$name 的 $item 上的契鎖重新鎖上了",
+        "action_reappear_many": "$name 的契鎖重新出現于：$items",
+        "action_timer_open": "$name 的 $item 上的契鎖咔哒一声打开了",
+        "action_config_changed": "$sender 修改了 $name 的 $item 上的鎖設定",
+        "action_unlocked_by_code": "$sender 輸入了正確密碼，解開了 $name 的 $item 上的契鎖",
+        "action_cheat_blocked": "$name 嘗試使用作弊指令 $cmd",
+        "action_self_config_changed": "$name 修改了 <possessive> $item 上的鎖設定",
+        "action_self_unlocked": "$name 輸入了正確密碼，解開了 <possessive> $item 上的契鎖",
+        "action_cooldown": "[鎖契] 偵測到鎖反覆重現，已暫停自動恢復 $minutes 分鐘。若有衝突，請讓鑰匙持有人取下衝突的鎖。"
+    },
+    "remote": {
+        "reject_not_in_room": "對方現在不在房間裡",
+        "reject_min_role": "你的身分未達到要求",
+        "remote_connected": "<b>$name（$num）</b> 已遠端連線到你。",
+        "remote_changed": "<b>$name（$num）</b> 遠端改變了你的外觀。",
+        "remote_action": "$name 的外觀被遠端修改了",
+        "remote_desc": "用鎖契遥控器遠端連線目标玩家",
+        "remote_example": "示例：/connect <成員編號>",
+        "remote_updating": "正在更新外觀...",
+        "remote_applied": "修改已生效",
+        "remote_not_applied": "修改未生效",
+        "remote_connecting": "正在連線...",
+        "remote_member_num": "成員編號：$num",
+        "remote_no_connection": "連線未建立",
+        "remote_error_generic": "出了点問題。對方可能不上線，或沒用鎖契外掛？",
+        "remote_rejected": "連線被拒絕"
+    }
+}

@@ -3,7 +3,7 @@ import { modStorage, SavedItem } from "modules/storage";
 import { PutPadlockMinimumRole } from "src/modules/deviousPadlock";
 import { toastsManager } from "zois-core/toasts";
 import { createElement, LockKeyhole } from "lucide";
-import { getText } from "zois-core/localization";
+import { t as getText } from "src/modules/i18n";
 
 
 const putPadlockMinimumRolesNames = {

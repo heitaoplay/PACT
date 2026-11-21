@@ -5,7 +5,7 @@ import { MainSubscreen } from "./mainSubscreen";
 import { dialogsManager } from "zois-core/dialogs";
 import { DeviousPadlockSettingsSubscreen } from "./deviousPadlockSettingsSubscreen";
 import { createElement, Save } from "lucide";
-import { getText } from "zois-core/localization";
+import { t as getText } from "src/modules/i18n";
 
 export class ProfilesSubscreen extends BaseSubscreen {
     public get name(): string {

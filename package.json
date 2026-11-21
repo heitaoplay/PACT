@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "node ./scripts/dev.mjs",
     "build": "node ./scripts/build.mjs",
-    "build:dev": "node ./scripts/build.mjs --dev"
+    "build:dev": "node ./scripts/build.mjs --dev",
+    "i18n:check": "python3 scripts/check-i18n.py"
   },
   "keywords": ["bondage-club", "padlock", "lock", "pact", "锁契"],
   "author": "锁契 · PACT 中文社区维护者",

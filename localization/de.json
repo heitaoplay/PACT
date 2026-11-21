@@ -1,0 +1,145 @@
+{
+    "toasts": {
+        "mod_loaded": "$name geladen",
+        "mod_updated": "锁契 · PACT wurde auf eine neue Version aktualisiert",
+        "correct_combination": "Richtige Kombination",
+        "profile_saved": "Konfiguration gespeichert",
+        "combination_reset": "Kombination zurückgesetzt",
+        "timer_reset": "Timer zurückgesetzt",
+        "profile_applied": "Konfiguration auf ausgewählte Schlösser angewendet"
+    },
+    "dialogs": {
+        "confirm_config_deleting": "Möchtest du diese Konfiguration wirklich löschen?",
+        "name_of_profile": "Name der Konfiguration",
+        "confirm_profile_overwriting": "Eine Konfiguration mit diesem Namen existiert bereits. Möchtest du sie überschreiben?",
+        "confirm_padlock_removing": "Möchtest du das Schloss wirklich entfernen?"
+    },
+    "tooltips": {
+        "report_bug_or_suggest_feature": "Fehler melden oder Funktion vorschlagen",
+        "view_source_code_on_github": "Quellcode auf GitHub ansehen",
+        "export_profile": "Schlosskonfiguration exportieren",
+        "view_changelog": "Änderungsverlauf ansehen"
+    },
+    "common": {
+        "devious_padlock": "Bundesschloss",
+        "compat_padlock": "Bundesschloss (DOGS-kompatibel)",
+        "pact_padlock": "PACT · Bundesschloss",
+        "lock_tooltip": "Von einem PACT-Bundesschloss verschlossen",
+        "lock_status_legend": "Schlosszustände",
+        "lock_state_closed": "Verriegelt",
+        "lock_state_unlocking": "Wird geöffnet",
+        "lock_state_unlocked": "Offen",
+        "version": "Version",
+        "minimum_roles": {
+            "public": "Alle",
+            "friend": "Freund",
+            "whitelist": "Whitelist",
+            "family": "Familie",
+            "lover": "Liebhaber",
+            "owner": "Herr"
+        },
+        "save": "Speichern",
+        "reset": "Zurücksetzen",
+        "inspect_padlock": "Schloss untersuchen",
+        "padlock_not_synced_title": "Schlosseinstellungen nicht verfügbar",
+        "padlock_not_synced_body": "Die Einstellungen des Schlosses an $group wurden noch nicht synchronisiert. Das kann direkt nach dem Anlegen passieren oder wenn das Schloss von einem anderen Mod stammt. Bitte versuche es in einem Moment erneut, oder bitte den Schlüsselhalter, das Schloss erneut anzubringen. Schließe dieses Fenster mit dem Schließen-Button oder Esc."
+    },
+    "settings": {
+        "enabled": "Aktiviert",
+        "devious_padlock": {
+            "minimum_role_to_put_padlock": "Mindestrolle zum Anlegen eines Schlosses",
+            "description": "Einmal angelegt kann der Träger das Bundesschloss nicht selbst entfernen. In den Einstellungen kannst du Notizen hinzufügen und Zugriffsrechte konfigurieren. Standardmäßig sind diese Schlösser deaktiviert und können nicht bei dir verwendet werden, aber du kannst das jederzeit ändern.",
+            "escape_tip": "Tipp: Wenn die Schwierigkeit nicht hoch ist, kann die Hexe aus der Magieschule dir helfen, das Schloss zu entfernen."
+        },
+        "profiles": {
+            "name": "Profile",
+            "profiles_empty": "Noch keine Profile vorhanden."
+        },
+        "remote_control": {
+            "name": "Fernsteuerung",
+            "notify_others": "Andere benachrichtigen",
+            "minimum_role_to_connect_remotely": "Mindestrolle für Fernverbindung",
+            "description": "Mit der Fernsteuerung können autorisierte Benutzer dein Aussehen aus der Ferne ändern, ohne im selben Raum zu sein. Wenn die Fernsteuerung deaktiviert ist, kann niemand sie bei dir verwenden. Gib /connect [Mitgliedsnummer] ein, um eine Verbindung herzustellen."
+        },
+        "devious_padlock_editor": {
+            "base_padlocks": {
+                "exclusive_padlock": "Exklusivschloss",
+                "lovers_padlock": "Liebhaberschloss",
+                "owner_padlock": "Herrenschloss"
+            },
+            "tabs": {
+                "general": "Allgemein",
+                "locking": "Verriegeln",
+                "key_holders": "Schlüsselhalter",
+                "note": "Notiz",
+                "advanced": "Erweitert",
+                "syncing": "Synchronisierung"
+            },
+            "protected_from_cheats": "Cheat-Schutz",
+            "member_number_on_padlock": "Mitgliedsnummer am Schloss:",
+            "padlock_can_be_unlocked": "Dieses Schloss kann geöffnet werden von:",
+            "enter_combination": "Kombination eingeben:",
+            "password_placeholder": "Passwort",
+            "pin_placeholder": "PIN-Code",
+            "remove_padlock": "Schloss entfernen",
+            "timer_expires_at": "<b>Timer läuft ab:</b>",
+            "combination": "<b>Kombination</b>",
+            "type_label": "Typ:",
+            "combination_placeholder": "Kombination",
+            "unlock_time": "<b>Öffnungszeit</b>",
+            "time_placeholder": "Zeit",
+            "base_lock": "<b>Basisschloss</b>",
+            "additional_unlock_methods": "Neben dem Schlüssel kann das Schloss auf andere Weise geöffnet werden",
+            "base_lock_description": "Der Besitzer des Schlosses kann das in BC verwendete Basisschloss festlegen. Das reduziert Auslösungen durch Manipulationen anderer Benutzer. Nicht-exklusive Basisschlösser deaktivieren die Schlüsselhalter Mitgliedsnummern und erzwingen, dass die Mindestrolle mindestens der des Basisschlosses entspricht.",
+            "minimum_role": "Mindestrolle",
+            "member_numbers": "Mitgliedsnummern",
+            "minimum_role_description": "Die Mindestrolle, die immer den Schlüssel besitzt. Muss die Mindestanforderung des Basisschlosses erfüllen.",
+            "member_numbers_description": "Mitgliedsnummern, die immer den Schlüssel besitzen. Deaktiviert, wenn das Basisschloss nicht Exklusiv ist.",
+            "note_placeholder": "Du kannst eine Notiz hinterlassen, die andere 锁契 · PACT-Benutzer sehen können",
+            "prevent_cheat_commands": "Cheat-Befehle blockieren",
+            "zones_you_can_sync": "Bereiche, die mit dem gewählten Profil synchronisiert werden können",
+            "zones_you_cant_sync": "Bereiche, die aufgrund von Einschränkungen nicht synchronisiert werden können",
+            "zones_to_sync": "Zu synchronisierende Bereiche",
+            "zones_already_synced": "Bereits synchronisierte Bereiche",
+            "profile_heading": "<b>Profil</b>",
+            "current_config": "Aktuelle Konfiguration",
+            "current_config_description": "[Aktuelle Schlosseinstellungen]",
+            "sync_padlocks": "Schlösser synchronisieren",
+            "sync_description": "Angegebene Schlösser mit dem angegebenen Profil synchronisieren",
+            "unlock_by_key_note": "<b>1.</b> Wer den Schlüssel besitzt (Besitzer, wer der Mindestrolle entspricht, und wer auf der Mitgliedsnummer am Schloss steht)",
+            "unlock_by_timer_note": "<b>2.</b> Wenn der Timer abläuft (falls eingestellt)",
+            "unlock_by_code_note": "<b>3.</b> Bei Eingabe des richtigen Codes (falls das Schloss Codes akzeptiert)"
+        },
+        "language": {
+            "label": "Plugin-Sprache"
+        }
+    },
+    "actions": {
+        "action_reappear_one": "$names Bundesschloss hat sich wieder um $item verriegelt",
+        "action_reappear_many": "$names Schlösser sind wieder erschienen an: $items",
+        "action_timer_open": "$names Bundesschloss öffnet sich an $item mit lautem Klicken",
+        "action_config_changed": "$sender hat die Schlosseinstellungen an $item von $name geändert",
+        "action_unlocked_by_code": "$sender hat den richtigen Code eingegeben und das Schloss an $item von $name geöffnet",
+        "action_cheat_blocked": "$name hat versucht, den Cheat-Befehl $cmd zu verwenden",
+        "action_self_config_changed": "$name hat die Schlosseinstellungen an <possessive> $item geändert",
+        "action_self_unlocked": "$name hat den richtigen Code eingegeben und das Schloss an <possessive> $item geöffnet",
+        "action_cooldown": "[PACT] Häufige Schloss-Wiederherstellungen erkannt. Auto-Wiederherstellung für $minutes Minuten pausiert. Bei Konflikten bitte den Schlüsselhalter das betreffende Schloss entfernen lassen."
+    },
+    "remote": {
+        "reject_not_in_room": "Der Zielspieler ist derzeit nicht im Raum",
+        "reject_min_role": "Deine Rolle erfüllt die Anforderung nicht",
+        "remote_connected": "<b>$name ($num)</b> hat sich aus der Ferne mit dir verbunden.",
+        "remote_changed": "<b>$name ($num)</b> hat dein Aussehen aus der Ferne geändert.",
+        "remote_action": "$names Aussehen wurde aus der Ferne geändert",
+        "remote_desc": "Mit der PACT-Fernsteuerung aus der Ferne mit einem Spieler verbinden",
+        "remote_example": "Beispiel: /connect <Mitgliedsnummer>",
+        "remote_updating": "Aussehen wird aktualisiert...",
+        "remote_applied": "Änderungen übernommen",
+        "remote_not_applied": "Änderungen nicht übernommen",
+        "remote_connecting": "Verbinde...",
+        "remote_member_num": "Mitgliedsnummer: $num",
+        "remote_no_connection": "Verbindung nicht hergestellt",
+        "remote_error_generic": "Etwas ist schiefgelaufen. Vielleicht ist der Spieler offline oder nutzt PACT nicht?",
+        "remote_rejected": "Verbindung abgelehnt"
+    }
+}

@@ -51,7 +51,8 @@ export interface ModStorage {
         itemGroups?: Partial<Record<AssetGroupItemName, DeviousPadlockSettings>>
     },
     misc: {
-
+        /** 插件语言覆盖：undefined / "auto" 跟随游戏语言，否则为具体语言代码 */
+        localeOverride?: string
     }
     version: string
 }

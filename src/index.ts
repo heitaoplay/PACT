@@ -14,7 +14,8 @@ import { ProfilesSubscreen } from "subscreens/profilesSubscreen";
 import { GITHUB_REPO_URL, LOCALIZATION_BASE_URL } from "./constants";
 import { loadDialogs } from "modules/dialogs";
 import { logger } from "zois-core/logging";
-import { getText } from "zois-core/localization";
+import { t as getText, setLocaleOverrideGetter, loadLocales as loadPactLocales } from "src/modules/i18n";
+import { installL10NMessageHook } from "src/modules/l10nMessage";
 import changelog from "../changelog.json";
 
 let hasInitialized = false;
@@ -34,8 +35,9 @@ bootstrap({
     },
     localization: {
         locales: {
-            default: "zh-CN",
-            supported: ["zh-CN", "en", "ru"]
+            default: "cn",
+            // 与 BC 登录语言代码一致：cn/en/fr/de/ru/tw/ua（zois-core 会 toLowerCase 后匹配文件名）
+            supported: ["cn", "en", "fr", "de", "ru", "tw", "ua"]
         },
         translationsFolderPath: IS_DEV ? `http://localhost:8000/localization` : LOCALIZATION_BASE_URL
     },
@@ -45,11 +47,16 @@ bootstrap({
     onReady: initializePACT
 });
 
-function initializePACT(): void {
+async function initializePACT(): Promise<void> {
     if (hasInitialized) return;
     hasInitialized = true;
 
     initStorage();
+    // 注入语言覆盖设置读取器，并加载语言包（跟随游戏语言或用户手动选择）
+    setLocaleOverrideGetter(() => modStorage.misc?.localeOverride);
+    await loadPactLocales();
+    installL10NMessageHook();
+
     loadSettingsMenu();
     loadDialogs();
     loadRemoteControl();

@@ -7,13 +7,14 @@ import pactPadlockImage from "images/pact-lock-closed.png";
 import { cloneDeep, isEqual } from "lodash-es";
 import { DeviousPadlockSettingsSubscreen } from "subscreens/deviousPadlockSettingsSubscreen";
 import { PadlockNotFoundSubscreen } from "subscreens/padlockNotFoundSubscreen";
+import { sendLocalizedAction } from "src/modules/l10nMessage";
 import { remoteControlIsInteracting } from "./remoteControl";
 import { smartGetItemName } from "zois-core/wardrobe";
 import { SyncPadlockMessageDto } from "dto/syncPadlockMessageDto";
 import { UpdatePadlockMessageDto } from "dto/updatePadlockMessageDto";
 import { CRAFTING_PARTIAL_KEYS, DEVIOUS_PADLOCK_COOLDOWN_TIME, DEVIOUS_PADLOCK_ITEM_PROPERTIES_TO_COMPARE, DEVIOUS_PADLOCK_MARKER, DEVIOUS_PADLOCK_MAX_TRIGGER_COUNT, DEVIOUS_PADLOCK_MINIMUM_FIRST_TRIGGER_INTERVAL, KNOWN_CHEAT_COMMANDS, COMPAT_PADLOCK_NAME, PACT_PADLOCK_NAME, isKnownPadlockName } from "src/constants";
 import { logger } from "zois-core/logging";
-import { getText } from "zois-core/localization";
+import { t as getText } from "src/modules/i18n";
 import { RemovePadlockMessageDto } from "src/dto/removePadlockMessageDto";
 
 // 兼容锁：物品名保持狗锁的 DeviousPadlock，只是显示名/图标换成锁契的
@@ -853,10 +854,10 @@ function checkDeviousPadlocksCore(sourceCharacter: Character): void {
 		) {
 			lastPadlockAppearanceActionTime = Date.now();
 			if (padlocksChangedItemNames.length === 1) {
-				messagesManager.sendAction(getText("actions.action_reappear_one", { name: getNickname(Player), item: padlocksChangedItemNames[0] }));
+				sendLocalizedAction("actions.action_reappear_one", { name: getNickname(Player), item: padlocksChangedItemNames[0] });
 			}
 			if (padlocksChangedItemNames.length > 1) {
-				messagesManager.sendAction(getText("actions.action_reappear_many", { name: getNickname(Player), items: padlocksChangedItemNames.join(", ") }));
+				sendLocalizedAction("actions.action_reappear_many", { name: getNickname(Player), items: padlocksChangedItemNames.join(", ") });
 			}
 		}
 
@@ -870,7 +871,7 @@ function checkDeviousPadlocksCore(sourceCharacter: Character): void {
 				if ((Date.now() - deviousPadlockTriggerCooldown.firstTriggerTime) < DEVIOUS_PADLOCK_MINIMUM_FIRST_TRIGGER_INTERVAL) {
 					deviousPadlockTriggerCooldown.state = true;
 					deviousPadlockTriggerCooldown.expiresAt = Date.now() + DEVIOUS_PADLOCK_COOLDOWN_TIME;
-					messagesManager.sendAction(`[契锁] 检测到锁反复重现，已暂停自动恢复 ${DEVIOUS_PADLOCK_COOLDOWN_TIME / (1000 * 60)} 分钟。若有冲突，请让钥匙持有人取下冲突的锁。`);
+					sendLocalizedAction("actions.action_cooldown", { minutes: DEVIOUS_PADLOCK_COOLDOWN_TIME / (1000 * 60) });
 					setTimeout(() => {
 						const wasCoolingDown = deviousPadlockTriggerCooldown.state;
 						refreshDeviousPadlockCooldown();
@@ -927,7 +928,7 @@ function checkDeviousPadlocksTimers(): void {
 		if (!item) continue;
 		if (unlockTime && new Date(unlockTime) < new Date()) {
 			const itemName = smartGetItemName(item);
-			messagesManager.sendAction(getText("actions.action_timer_open", { name: getNickname(Player), item: itemName }));
+			sendLocalizedAction("actions.action_timer_open", { name: getNickname(Player), item: itemName });
 			delete modStorage.deviousPadlock.itemGroups[groupName];
 			unsyncItemGroups([groupName], false);
 			syncStorage();
@@ -1187,9 +1188,7 @@ export async function loadDeviousPadlock(): Promise<void> {
 		}
 		changePadlockSettings(data.groupName, result.data);
 		const itemName = smartGetItemName(InventoryGet(Player, data.groupName)!);
-		messagesManager.sendAction(
-			getText("actions.action_config_changed", { sender: getNickname(sender), name: getNickname(Player), item: itemName })
-		);
+		sendLocalizedAction("actions.action_config_changed", { sender: getNickname(sender), name: getNickname(Player), item: itemName });
 	});
 
 	messagesManager.onPacket(
@@ -1221,9 +1220,7 @@ export async function loadDeviousPadlock(): Promise<void> {
 				unlockItemInternally(Player, data.groupName);
 				ChatRoomCharacterUpdate(Player);
 				syncStorage();
-				messagesManager.sendAction(
-					getText("actions.action_unlocked_by_code", { sender: getNickname(sender), name: getNickname(Player), item: itemName })
-				);
+				sendLocalizedAction("actions.action_unlocked_by_code", { sender: getNickname(sender), name: getNickname(Player), item: itemName });
 			}
 		}
 	});
@@ -1508,9 +1505,7 @@ export async function loadDeviousPadlock(): Promise<void> {
 		let prevent = false;
 		KNOWN_CHEAT_COMMANDS.forEach((c) => {
 			if (command?.startsWith(c)) {
-				messagesManager.sendAction(
-					getText("actions.action_cheat_blocked", { name: getNickname(Player), cmd: c })
-				);
+				sendLocalizedAction("actions.action_cheat_blocked", { name: getNickname(Player), cmd: c });
 				return prevent = true;
 			}
 		});

@@ -2,7 +2,7 @@ import { BaseSubscreen } from "zois-core/ui";
 import { modStorage } from "modules/storage";
 import { RemoteConnectMinimumRole } from "modules/remoteControl";
 import { createElement, Radio } from "lucide";
-import { getText } from "zois-core/localization";
+import { t as getText } from "src/modules/i18n";
 
 const remoteConnectMinimumRolesNames = {
     [RemoteConnectMinimumRole.FRIEND]: () => getText("common.minimum_roles.friend"),

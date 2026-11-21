@@ -38,7 +38,10 @@
             "owner": "Owner"
         },
         "save": "Save",
-        "reset": "Reset"
+        "reset": "Reset",
+        "inspect_padlock": "Inspect padlock",
+        "padlock_not_synced_title": "Lock settings unavailable",
+        "padlock_not_synced_body": "The settings for the lock on $group have not synced to this client yet. This can happen right after a friend locks you, or if the lock was placed by another mod. Please wait a moment and try again, or ask the keyholder to re-apply the lock. You can close this window with the exit button or Esc."
     },
     "settings": {
         "enabled": "Enabled",

@@ -6,6 +6,7 @@ import { getCurrentSubscreen, setSubscreen } from "zois-core/ui";
 import pactPadlockImage from "images/pact-lock-closed.png";
 import { cloneDeep, isEqual } from "lodash-es";
 import { DeviousPadlockSettingsSubscreen } from "subscreens/deviousPadlockSettingsSubscreen";
+import { PadlockNotFoundSubscreen } from "subscreens/padlockNotFoundSubscreen";
 import { remoteControlIsInteracting } from "./remoteControl";
 import { smartGetItemName } from "zois-core/wardrobe";
 import { SyncPadlockMessageDto } from "dto/syncPadlockMessageDto";
@@ -273,6 +274,14 @@ function createDeviousPadlock(): void {
 	for (const asset of [deviousPadlock, pactPadlock]) {
 		if (!AssetGet("Female3DCG", "ItemMisc", asset.Name)) {
 			registerPadlockAssetWithCompatibility(asset, itemMiscGroup, itemMiscGroupDefinition);
+		}
+		// 物品栏按钮显示的是 Asset.Description；自定义资产默认回退成英文 Name。
+		// 这里改成本地化中文名，只影响本机显示，不影响协议里的物品 Name。
+		const registeredAsset = AssetGet("Female3DCG", "ItemMisc", asset.Name);
+		if (registeredAsset) {
+			(registeredAsset as { Description: string }).Description = getText(
+				asset.Name === PACT_PADLOCK_NAME ? "common.pact_padlock" : "common.compat_padlock"
+			);
 		}
 		InventoryAdd(Player, asset.Name, "ItemMisc");
 	}
@@ -1142,6 +1151,8 @@ export async function loadDeviousPadlock(): Promise<void> {
 		}
 		if (!getPadlockSettings(target, itemGroup.Name)) {
 			logger.warn(`Cannot inspect Devious Padlock on ${itemGroup.Name}: lock settings have not synced for this character`);
+			// 不再留白屏：显示中文提示界面，BaseSubscreen 自带退出按钮，ESC 也能退出
+			setSubscreen(new PadlockNotFoundSubscreen(itemGroup.Name));
 			return;
 		}
 		setSubscreen(
@@ -1164,7 +1175,8 @@ export async function loadDeviousPadlock(): Promise<void> {
 
 	ServerPlayerChatRoom.register({
 		screen: "InspectDeviousPadlock" as ScreenName,
-		callback: () => getCurrentSubscreen() instanceof DeviousPadlockSettingsSubscreen
+		callback: () => getCurrentSubscreen() instanceof DeviousPadlockSettingsSubscreen ||
+			getCurrentSubscreen() instanceof PadlockNotFoundSubscreen
 	});
 
 	messagesManager.onPacket("changePadlockSettings", UpdatePadlockMessageDto, async (data: UpdatePadlockMessageDto, sender) => {

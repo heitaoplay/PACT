@@ -25,6 +25,8 @@ cd "$TMP"
 git init -q
 git remote add origin "https://x-access-token:${TOKEN}@github.com/${REPO}.git"
 git fetch -q origin gh-pages
+# 清掉工作区已有文件再 checkout，避免与远端文件冲突
+find . -mindepth 1 -maxdepth 1 -not -name .git -exec rm -rf {} +
 git checkout -q -B gh-pages FETCH_HEAD
 
 echo "==> 同步文件"

@@ -39,7 +39,10 @@
             "owner": "主人"
         },
         "save": "保存",
-        "reset": "重置"
+        "reset": "重置",
+        "inspect_padlock": "检查锁",
+        "padlock_not_synced_title": "无法读取锁的设置",
+        "padlock_not_synced_body": "$group 上的锁设置还没同步到本机。可能是刚被上锁、或这把锁来自其它插件。请稍等片刻再试，或请钥匙持有人重新上锁。可用退出按钮或 Esc 关闭此窗口。"
     },
     "settings": {
         "enabled": "启用",

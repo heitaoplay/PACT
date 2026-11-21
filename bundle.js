@@ -9119,6 +9119,38 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
+  // src/subscreens/padlockNotFoundSubscreen.ts
+  var PadlockNotFoundSubscreen = class extends BaseSubscreen {
+    groupName;
+    constructor(groupName) {
+      super();
+      this.groupName = groupName;
+    }
+    get name() {
+      return getText("common.inspect_padlock");
+    }
+    onLoad() {
+      this.createText({
+        text: getText("common.padlock_not_synced_title"),
+        x: 60,
+        y: 180,
+        width: 600,
+        height: 60
+      });
+      this.createText({
+        text: getText("common.padlock_not_synced_body", { group: this.groupName }),
+        x: 60,
+        y: 260,
+        width: 620,
+        height: 160
+      });
+    }
+    onExit() {
+      if (ChatRoomData !== null) CommonSetScreen("Online", "ChatRoom");
+      else CommonSetScreen("Room", "MainHall");
+    }
+  };
+
   // src/modules/remoteControl.ts
   var remoteControlIsInteracting = false;
   var setRemoteControlIsInteracting = (value) => remoteControlIsInteracting = value;
@@ -9695,6 +9727,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
     for (const asset of [deviousPadlock2, pactPadlock]) {
       if (!AssetGet("Female3DCG", "ItemMisc", asset.Name)) {
         registerPadlockAssetWithCompatibility(asset, itemMiscGroup, itemMiscGroupDefinition);
+      }
+      const registeredAsset = AssetGet("Female3DCG", "ItemMisc", asset.Name);
+      if (registeredAsset) {
+        registeredAsset.Description = getText(
+          asset.Name === PACT_PADLOCK_NAME ? "common.pact_padlock" : "common.compat_padlock"
+        );
       }
       InventoryAdd(Player, asset.Name, "ItemMisc");
     }
@@ -10366,6 +10404,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       }
       if (!getPadlockSettings(target, itemGroup.Name)) {
         logger.warn(`Cannot inspect Devious Padlock on ${itemGroup.Name}: lock settings have not synced for this character`);
+        setSubscreen(new PadlockNotFoundSubscreen(itemGroup.Name));
         return;
       }
       setSubscreen(
@@ -10387,7 +10426,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     };
     ServerPlayerChatRoom.register({
       screen: "InspectDeviousPadlock",
-      callback: () => getCurrentSubscreen() instanceof DeviousPadlockSettingsSubscreen
+      callback: () => getCurrentSubscreen() instanceof DeviousPadlockSettingsSubscreen || getCurrentSubscreen() instanceof PadlockNotFoundSubscreen
     });
     messagesManager.onPacket("changePadlockSettings", UpdatePadlockMessageDto, async (data, sender) => {
       const result = await validatePadlockSettingsUpdate(sender, data.config, data.groupName);

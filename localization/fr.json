@@ -1,0 +1,145 @@
+{
+    "toasts": {
+        "mod_loaded": "$name chargé",
+        "mod_updated": "锁契 · PACT a été mis à jour",
+        "correct_combination": "Combinaison correcte",
+        "profile_saved": "Configuration enregistrée",
+        "combination_reset": "Combinaison réinitialisée",
+        "timer_reset": "Minuteur réinitialisé",
+        "profile_applied": "Configuration appliquée aux cadenas sélectionnés"
+    },
+    "dialogs": {
+        "confirm_config_deleting": "Voulez-vous vraiment supprimer cette configuration ?",
+        "name_of_profile": "Nom de la configuration",
+        "confirm_profile_overwriting": "Une configuration du même nom existe déjà. Voulez-vous l'écraser ?",
+        "confirm_padlock_removing": "Voulez-vous vraiment retirer le cadenas ?"
+    },
+    "tooltips": {
+        "report_bug_or_suggest_feature": "Signaler un bug ou suggérer une fonctionnalité",
+        "view_source_code_on_github": "Voir le code source sur GitHub",
+        "export_profile": "Exporter la configuration du cadenas",
+        "view_changelog": "Voir le journal des modifications"
+    },
+    "common": {
+        "devious_padlock": "Cadenas d'alliance",
+        "compat_padlock": "Cadenas d'alliance (compatible DOGS)",
+        "pact_padlock": "Cadenas PACT · d'alliance",
+        "lock_tooltip": "Verrouillé par un cadenas d'alliance PACT",
+        "lock_status_legend": "États du cadenas",
+        "lock_state_closed": "Verrouillé",
+        "lock_state_unlocking": "Ouverture",
+        "lock_state_unlocked": "Ouvert",
+        "version": "Version",
+        "minimum_roles": {
+            "public": "Tout le monde",
+            "friend": "Ami",
+            "whitelist": "Liste blanche",
+            "family": "Famille",
+            "lover": "Amant",
+            "owner": "Maître"
+        },
+        "save": "Enregistrer",
+        "reset": "Réinitialiser",
+        "inspect_padlock": "Inspecter le cadenas",
+        "padlock_not_synced_title": "Paramètres du cadenas indisponibles",
+        "padlock_not_synced_body": "Les paramètres du cadenas sur $group ne sont pas encore synchronisés. Cela peut arriver juste après avoir été verrouillé, ou si le cadenas vient d'un autre mod. Veuillez réessayer dans un instant, ou demander au détenteur de la clé de reposer le cadenas. Fermez cette fenêtre avec le bouton de sortie ou Échap."
+    },
+    "settings": {
+        "enabled": "Activé",
+        "devious_padlock": {
+            "minimum_role_to_put_padlock": "Rôle minimum pour poser un cadenas",
+            "description": "Une fois posé, le porteur ne peut pas retirer lui-même le cadenas d'alliance. Vous pouvez ajouter des notes et configurer les accès dans les paramètres. Par défaut ces cadenas sont désactivés et ne peuvent pas être utilisés sur vous, mais vous pouvez changer cela à tout moment.",
+            "escape_tip": "Astuce : si la difficulté n'est pas élevée, la sorcière de l'école de magie peut vous aider à retirer le cadenas."
+        },
+        "profiles": {
+            "name": "Profils",
+            "profiles_empty": "Aucun profil pour le moment."
+        },
+        "remote_control": {
+            "name": "Contrôle à distance",
+            "notify_others": "Notifier les autres",
+            "minimum_role_to_connect_remotely": "Rôle minimum pour la connexion à distance",
+            "description": "Le contrôle à distance permet aux utilisateurs autorisés de modifier votre apparence à distance, sans être dans la même pièce. Si le contrôle à distance est désactivé, personne ne peut l'utiliser sur vous. Tapez \"/connect [numéro de membre]\" pour vous connecter."
+        },
+        "devious_padlock_editor": {
+            "base_padlocks": {
+                "exclusive_padlock": "Cadenas exclusif",
+                "lovers_padlock": "Cadenas d'amants",
+                "owner_padlock": "Cadenas de maître"
+            },
+            "tabs": {
+                "general": "Général",
+                "locking": "Verrouillage",
+                "key_holders": "Détenteurs de clé",
+                "note": "Note",
+                "advanced": "Avancé",
+                "syncing": "Synchronisation"
+            },
+            "protected_from_cheats": "Protection anti-triche",
+            "member_number_on_padlock": "Numéro de membre sur le cadenas :",
+            "padlock_can_be_unlocked": "Ce cadenas peut être ouvert par :",
+            "enter_combination": "Entrer la combinaison :",
+            "password_placeholder": "Mot de passe",
+            "pin_placeholder": "Code PIN",
+            "remove_padlock": "Retirer le cadenas",
+            "timer_expires_at": "<b>Expiration du minuteur :</b>",
+            "combination": "<b>Combinaison</b>",
+            "type_label": "Type :",
+            "combination_placeholder": "Combinaison",
+            "unlock_time": "<b>Heure d'ouverture</b>",
+            "time_placeholder": "Heure",
+            "base_lock": "<b>Cadenas de base</b>",
+            "additional_unlock_methods": "En plus de la clé, le cadenas peut être ouvert d'autres façons",
+            "base_lock_description": "Le propriétaire du cadenas (la personne qui l'a posé) peut choisir le cadenas de base utilisé dans BC. Cela réduit les déclenchements causés par les manipulations d'autres utilisateurs. Les cadenas de base non exclusifs désactivent les détenteurs « Numéros de membre » et forcent le « Rôle minimum » à au moins égaler celui du cadenas de base.",
+            "minimum_role": "Rôle minimum",
+            "member_numbers": "Numéros de membre",
+            "minimum_role_description": "Le rôle minimum qui aura toujours la clé de ce cadenas. Doit respecter le minimum du cadenas de base.",
+            "member_numbers_description": "Les numéros de membre qui auront toujours la clé. Désactivé si le cadenas de base n'est pas « Exclusif ».",
+            "note_placeholder": "Vous pouvez laisser une note visible par les autres utilisateurs de 锁契 · PACT",
+            "prevent_cheat_commands": "Bloquer les commandes de triche",
+            "zones_you_can_sync": "Zones pouvant être synchronisées avec le profil choisi",
+            "zones_you_cant_sync": "Zones ne pouvant pas être synchronisées (limites)",
+            "zones_to_sync": "Zones à synchroniser",
+            "zones_already_synced": "Zones déjà synchronisées",
+            "profile_heading": "<b>Profil</b>",
+            "current_config": "Configuration actuelle",
+            "current_config_description": "[Paramètres du cadenas actuel]",
+            "sync_padlocks": "Synchroniser les cadenas",
+            "sync_description": "Synchroniser les cadenas spécifiés avec le profil spécifié",
+            "unlock_by_key_note": "<b>1.</b> Ceux qui ont la clé (propriétaire, ceux qui correspondent au rôle minimum, et ceux dont le numéro est sur le cadenas)",
+            "unlock_by_timer_note": "<b>2.</b> À l'expiration du minuteur (si défini)",
+            "unlock_by_code_note": "<b>3.</b> En entrant le bon code (si le cadenas accepte les codes)"
+        },
+        "language": {
+            "label": "Langue du module"
+        }
+    },
+    "actions": {
+        "action_reappear_one": "Le cadenas d'alliance de $name s'est refermé sur $item",
+        "action_reappear_many": "Les cadenas de $name sont réapparus sur : $items",
+        "action_timer_open": "Le cadenas d'alliance de $name s'ouvre sur $item avec un clic",
+        "action_config_changed": "$sender a modifié les paramètres du cadenas sur $item de $name",
+        "action_unlocked_by_code": "$sender a entré le bon code et ouvert le cadenas sur $item de $name",
+        "action_cheat_blocked": "$name a tenté d'utiliser la commande de triche $cmd",
+        "action_self_config_changed": "$name a modifié les paramètres du cadenas sur <possessive> $item",
+        "action_self_unlocked": "$name a entré le bon code et ouvert le cadenas sur <possessive> $item",
+        "action_cooldown": "[PACT] Restaurations fréquentes détectées. Restauration automatique suspendue pendant $minutes minutes. En cas de conflit, demandez au détenteur de la clé de retirer le cadenas conflicting."
+    },
+    "remote": {
+        "reject_not_in_room": "Le joueur cible n'est pas dans la salle actuellement",
+        "reject_min_role": "Votre rôle ne répond pas aux exigences",
+        "remote_connected": "<b>$name ($num)</b> s'est connecté à vous à distance.",
+        "remote_changed": "<b>$name ($num)</b> a modifié votre apparence à distance.",
+        "remote_action": "L'apparence de $name a été modifiée à distance",
+        "remote_desc": "Se connecter à distance à un joueur avec la télécommande PACT",
+        "remote_example": "Exemple : /connect <numéro de membre>",
+        "remote_updating": "Mise à jour de l'apparence...",
+        "remote_applied": "Modifications appliquées",
+        "remote_not_applied": "Modifications non appliquées",
+        "remote_connecting": "Connexion...",
+        "remote_member_num": "Numéro de membre : $num",
+        "remote_no_connection": "Connexion non établie",
+        "remote_error_generic": "Une erreur s'est produite. Le joueur est peut-être hors ligne ou n'utilise pas PACT ?",
+        "remote_rejected": "Connexion refusée"
+    }
+}

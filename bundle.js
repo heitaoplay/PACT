@@ -1142,7 +1142,7 @@ if (typeof window.ImportBondageCollege !== "function") {
           const e2 = new Error(o2);
           throw console.error(e2), e2;
         }
-        const t = new TextEncoder();
+        const t2 = new TextEncoder();
         function n(o2) {
           return !!o2 && "object" == typeof o2 && !Array.isArray(o2);
         }
@@ -1155,44 +1155,44 @@ if (typeof window.ImportBondageCollege !== "function") {
           a.has(o2) || (a.add(o2), console.warn(o2));
         }
         function s(o2) {
-          const e2 = [], t2 = /* @__PURE__ */ new Map(), n2 = /* @__PURE__ */ new Set();
+          const e2 = [], t3 = /* @__PURE__ */ new Map(), n2 = /* @__PURE__ */ new Set();
           for (const r3 of f.values()) {
             const i3 = r3.patching.get(o2.name);
             if (i3) {
               e2.push(...i3.hooks);
-              for (const [e3, a2] of i3.patches.entries()) t2.has(e3) && t2.get(e3) !== a2 && c(`ModSDK: Mod '${r3.name}' is patching function ${o2.name} with same pattern that is already applied by different mod, but with different pattern:
+              for (const [e3, a2] of i3.patches.entries()) t3.has(e3) && t3.get(e3) !== a2 && c(`ModSDK: Mod '${r3.name}' is patching function ${o2.name} with same pattern that is already applied by different mod, but with different pattern:
 Pattern:
 ${e3}
 Patch1:
-${t2.get(e3) || ""}
+${t3.get(e3) || ""}
 Patch2:
-${a2}`), t2.set(e3, a2), n2.add(r3.name);
+${a2}`), t3.set(e3, a2), n2.add(r3.name);
             }
           }
           e2.sort(((o3, e3) => e3.priority - o3.priority));
           const r2 = (function(o3, e3) {
             if (0 === e3.size) return o3;
-            let t3 = o3.toString().replaceAll("\r\n", "\n");
-            for (const [n3, r3] of e3.entries()) t3.includes(n3) || c(`ModSDK: Patching ${o3.name}: Patch ${n3} not applied`), t3 = t3.replaceAll(n3, r3);
-            return (0, eval)(`(${t3})`);
-          })(o2.original, t2);
+            let t4 = o3.toString().replaceAll("\r\n", "\n");
+            for (const [n3, r3] of e3.entries()) t4.includes(n3) || c(`ModSDK: Patching ${o3.name}: Patch ${n3} not applied`), t4 = t4.replaceAll(n3, r3);
+            return (0, eval)(`(${t4})`);
+          })(o2.original, t3);
           let i2 = function(e3) {
-            var t3, i3;
-            const a2 = null === (i3 = (t3 = m.errorReporterHooks).hookChainExit) || void 0 === i3 ? void 0 : i3.call(t3, o2.name, n2), c2 = r2.apply(this, e3);
+            var t4, i3;
+            const a2 = null === (i3 = (t4 = m.errorReporterHooks).hookChainExit) || void 0 === i3 ? void 0 : i3.call(t4, o2.name, n2), c2 = r2.apply(this, e3);
             return null == a2 || a2(), c2;
           };
-          for (let t3 = e2.length - 1; t3 >= 0; t3--) {
-            const n3 = e2[t3], r3 = i2;
+          for (let t4 = e2.length - 1; t4 >= 0; t4--) {
+            const n3 = e2[t4], r3 = i2;
             i2 = function(e3) {
-              var t4, i3;
-              const a2 = null === (i3 = (t4 = m.errorReporterHooks).hookEnter) || void 0 === i3 ? void 0 : i3.call(t4, o2.name, n3.mod), c2 = n3.hook.apply(this, [e3, (o3) => {
+              var t5, i3;
+              const a2 = null === (i3 = (t5 = m.errorReporterHooks).hookEnter) || void 0 === i3 ? void 0 : i3.call(t5, o2.name, n3.mod), c2 = n3.hook.apply(this, [e3, (o3) => {
                 if (1 !== arguments.length || !Array.isArray(e3)) throw new Error(`Mod ${n3.mod} failed to call next hook: Expected args to be array, got ${typeof o3}`);
                 return r3.call(this, o3);
               }]);
               return null == a2 || a2(), c2;
             };
           }
-          return { hooks: e2, patches: t2, patchesSources: n2, enter: i2, final: r2 };
+          return { hooks: e2, patches: t3, patchesSources: n2, enter: i2, final: r2 };
         }
         function l(o2, e2 = false) {
           let r2 = i.get(o2);
@@ -1200,12 +1200,12 @@ ${a2}`), t2.set(e3, a2), n2.add(r3.name);
           else {
             let e3 = window;
             const a2 = o2.split(".");
-            for (let t2 = 0; t2 < a2.length - 1; t2++) if (e3 = e3[a2[t2]], !n(e3)) throw new Error(`ModSDK: Function ${o2} to be patched not found; ${a2.slice(0, t2 + 1).join(".")} is not object`);
+            for (let t3 = 0; t3 < a2.length - 1; t3++) if (e3 = e3[a2[t3]], !n(e3)) throw new Error(`ModSDK: Function ${o2} to be patched not found; ${a2.slice(0, t3 + 1).join(".")} is not object`);
             const c2 = e3[a2[a2.length - 1]];
             if ("function" != typeof c2) throw new Error(`ModSDK: Function ${o2} to be patched not found`);
             const l2 = (function(o3) {
               let e4 = -1;
-              for (const n2 of t.encode(o3)) {
+              for (const n2 of t2.encode(o3)) {
                 let o4 = 255 & (e4 ^ n2);
                 for (let e5 = 0; e5 < 8; e5++) o4 = 1 & o4 ? -306674912 ^ o4 >>> 1 : o4 >>> 1;
                 e4 = e4 >>> 8 ^ o4;
@@ -1226,52 +1226,52 @@ ${a2}`), t2.set(e3, a2), n2.add(r3.name);
         }
         function p() {
           const o2 = /* @__PURE__ */ new Map();
-          for (const [e2, t2] of i) o2.set(e2, { name: e2, original: t2.original, originalHash: t2.originalHash, sdkEntrypoint: t2.router, currentEntrypoint: t2.context[t2.contextProperty], hookedByMods: r(t2.precomputed.hooks.map(((o3) => o3.mod))), patchedByMods: Array.from(t2.precomputed.patchesSources) });
+          for (const [e2, t3] of i) o2.set(e2, { name: e2, original: t3.original, originalHash: t3.originalHash, sdkEntrypoint: t3.router, currentEntrypoint: t3.context[t3.contextProperty], hookedByMods: r(t3.precomputed.hooks.map(((o3) => o3.mod))), patchedByMods: Array.from(t3.precomputed.patchesSources) });
           return o2;
         }
         const f = /* @__PURE__ */ new Map();
         function u(o2) {
           f.get(o2.name) !== o2 && e(`Failed to unload mod '${o2.name}': Not registered`), f.delete(o2.name), o2.loaded = false, d();
         }
-        function g(o2, t2) {
+        function g(o2, t3) {
           o2 && "object" == typeof o2 || e("Failed to register mod: Expected info object, got " + typeof o2), "string" == typeof o2.name && o2.name || e("Failed to register mod: Expected name to be non-empty string, got " + typeof o2.name);
           let r2 = `'${o2.name}'`;
-          "string" == typeof o2.fullName && o2.fullName || e(`Failed to register mod ${r2}: Expected fullName to be non-empty string, got ${typeof o2.fullName}`), r2 = `'${o2.fullName} (${o2.name})'`, "string" != typeof o2.version && e(`Failed to register mod ${r2}: Expected version to be string, got ${typeof o2.version}`), o2.repository || (o2.repository = void 0), void 0 !== o2.repository && "string" != typeof o2.repository && e(`Failed to register mod ${r2}: Expected repository to be undefined or string, got ${typeof o2.version}`), null == t2 && (t2 = {}), t2 && "object" == typeof t2 || e(`Failed to register mod ${r2}: Expected options to be undefined or object, got ${typeof t2}`);
-          const i2 = true === t2.allowReplace, a2 = f.get(o2.name);
+          "string" == typeof o2.fullName && o2.fullName || e(`Failed to register mod ${r2}: Expected fullName to be non-empty string, got ${typeof o2.fullName}`), r2 = `'${o2.fullName} (${o2.name})'`, "string" != typeof o2.version && e(`Failed to register mod ${r2}: Expected version to be string, got ${typeof o2.version}`), o2.repository || (o2.repository = void 0), void 0 !== o2.repository && "string" != typeof o2.repository && e(`Failed to register mod ${r2}: Expected repository to be undefined or string, got ${typeof o2.version}`), null == t3 && (t3 = {}), t3 && "object" == typeof t3 || e(`Failed to register mod ${r2}: Expected options to be undefined or object, got ${typeof t3}`);
+          const i2 = true === t3.allowReplace, a2 = f.get(o2.name);
           a2 && (a2.allowReplace && i2 || e(`Refusing to load mod ${r2}: it is already loaded and doesn't allow being replaced.
 Was the mod loaded multiple times?`), u(a2));
           const c2 = (o3) => {
             let e2 = g2.patching.get(o3.name);
             return e2 || (e2 = { hooks: [], patches: /* @__PURE__ */ new Map() }, g2.patching.set(o3.name, e2)), e2;
-          }, s2 = (o3, t3) => (...n2) => {
+          }, s2 = (o3, t4) => (...n2) => {
             var i3, a3;
             const c3 = null === (a3 = (i3 = m.errorReporterHooks).apiEndpointEnter) || void 0 === a3 ? void 0 : a3.call(i3, o3, g2.name);
             g2.loaded || e(`Mod ${r2} attempted to call SDK function after being unloaded`);
-            const s3 = t3(...n2);
+            const s3 = t4(...n2);
             return null == c3 || c3(), s3;
-          }, p2 = { unload: s2("unload", (() => u(g2))), hookFunction: s2("hookFunction", ((o3, t3, n2) => {
+          }, p2 = { unload: s2("unload", (() => u(g2))), hookFunction: s2("hookFunction", ((o3, t4, n2) => {
             "string" == typeof o3 && o3 || e(`Mod ${r2} failed to patch a function: Expected function name string, got ${typeof o3}`);
             const i3 = l(o3), a3 = c2(i3);
-            "number" != typeof t3 && e(`Mod ${r2} failed to hook function '${o3}': Expected priority number, got ${typeof t3}`), "function" != typeof n2 && e(`Mod ${r2} failed to hook function '${o3}': Expected hook function, got ${typeof n2}`);
-            const s3 = { mod: g2.name, priority: t3, hook: n2 };
+            "number" != typeof t4 && e(`Mod ${r2} failed to hook function '${o3}': Expected priority number, got ${typeof t4}`), "function" != typeof n2 && e(`Mod ${r2} failed to hook function '${o3}': Expected hook function, got ${typeof n2}`);
+            const s3 = { mod: g2.name, priority: t4, hook: n2 };
             return a3.hooks.push(s3), d(), () => {
               const o4 = a3.hooks.indexOf(s3);
               o4 >= 0 && (a3.hooks.splice(o4, 1), d());
             };
-          })), patchFunction: s2("patchFunction", ((o3, t3) => {
+          })), patchFunction: s2("patchFunction", ((o3, t4) => {
             "string" == typeof o3 && o3 || e(`Mod ${r2} failed to patch a function: Expected function name string, got ${typeof o3}`);
             const i3 = l(o3), a3 = c2(i3);
-            n(t3) || e(`Mod ${r2} failed to patch function '${o3}': Expected patches object, got ${typeof t3}`);
-            for (const [n2, i4] of Object.entries(t3)) "string" == typeof i4 ? a3.patches.set(n2, i4) : null === i4 ? a3.patches.delete(n2) : e(`Mod ${r2} failed to patch function '${o3}': Invalid format of patch '${n2}'`);
+            n(t4) || e(`Mod ${r2} failed to patch function '${o3}': Expected patches object, got ${typeof t4}`);
+            for (const [n2, i4] of Object.entries(t4)) "string" == typeof i4 ? a3.patches.set(n2, i4) : null === i4 ? a3.patches.delete(n2) : e(`Mod ${r2} failed to patch function '${o3}': Invalid format of patch '${n2}'`);
             d();
           })), removePatches: s2("removePatches", ((o3) => {
             "string" == typeof o3 && o3 || e(`Mod ${r2} failed to patch a function: Expected function name string, got ${typeof o3}`);
-            const t3 = l(o3);
-            c2(t3).patches.clear(), d();
-          })), callOriginal: s2("callOriginal", ((o3, t3, n2) => {
+            const t4 = l(o3);
+            c2(t4).patches.clear(), d();
+          })), callOriginal: s2("callOriginal", ((o3, t4, n2) => {
             "string" == typeof o3 && o3 || e(`Mod ${r2} failed to call a function: Expected function name string, got ${typeof o3}`);
             const i3 = l(o3);
-            return Array.isArray(t3) || e(`Mod ${r2} failed to call a function: Expected args array, got ${typeof t3}`), i3.original.apply(null != n2 ? n2 : globalThis, t3);
+            return Array.isArray(t4) || e(`Mod ${r2} failed to call a function: Expected args array, got ${typeof t4}`), i3.original.apply(null != n2 ? n2 : globalThis, t4);
           })), getOriginalHash: s2("getOriginalHash", ((o3) => {
             "string" == typeof o3 && o3 || e(`Mod ${r2} failed to get hash: Expected function name string, got ${typeof o3}`);
             return l(o3).originalHash;
@@ -5104,13 +5104,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
 
   // node_modules/.pnpm/class-transformer@0.5.1/node_modules/class-transformer/esm5/ClassTransformer.js
   var __assign = function() {
-    __assign = Object.assign || function(t) {
+    __assign = Object.assign || function(t2) {
       for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
         for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-          t[p] = s[p];
+          t2[p] = s[p];
       }
-      return t;
+      return t2;
     };
     return __assign.apply(this, arguments);
   };
@@ -5891,9 +5891,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
   };
   var __generator = function(thisArg, body) {
     var _ = { label: 0, sent: function() {
-      if (t[0] & 1) throw t[1];
-      return t[1];
-    }, trys: [], ops: [] }, f, y, t, g;
+      if (t2[0] & 1) throw t2[1];
+      return t2[1];
+    }, trys: [], ops: [] }, f, y, t2, g;
     return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() {
       return this;
     }), g;
@@ -5905,12 +5905,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
     function step(op) {
       if (f) throw new TypeError("Generator is already executing.");
       while (g && (g = 0, op[0] && (_ = 0)), _) try {
-        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-        if (y = 0, t) op = [op[0] & 2, t.value];
+        if (f = 1, y && (t2 = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t2 = y["return"]) && t2.call(y), 0) : y.next) && !(t2 = t2.call(y, op[1])).done) return t2;
+        if (y = 0, t2) op = [op[0] & 2, t2.value];
         switch (op[0]) {
           case 0:
           case 1:
-            t = op;
+            t2 = op;
             break;
           case 4:
             _.label++;
@@ -5925,25 +5925,25 @@ One of mods you are using is using an old version of SDK. It will work for now b
             _.trys.pop();
             continue;
           default:
-            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+            if (!(t2 = _.trys, t2 = t2.length > 0 && t2[t2.length - 1]) && (op[0] === 6 || op[0] === 2)) {
               _ = 0;
               continue;
             }
-            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+            if (op[0] === 3 && (!t2 || op[1] > t2[0] && op[1] < t2[3])) {
               _.label = op[1];
               break;
             }
-            if (op[0] === 6 && _.label < t[1]) {
-              _.label = t[1];
-              t = op;
+            if (op[0] === 6 && _.label < t2[1]) {
+              _.label = t2[1];
+              t2 = op;
               break;
             }
-            if (t && _.label < t[2]) {
-              _.label = t[2];
+            if (t2 && _.label < t2[2]) {
+              _.label = t2[2];
               _.ops.push(op);
               break;
             }
-            if (t[2]) _.ops.pop();
+            if (t2[2]) _.ops.pop();
             _.trys.pop();
             continue;
         }
@@ -5952,7 +5952,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         op = [6, e];
         y = 0;
       } finally {
-        f = t = 0;
+        f = t2 = 0;
       }
       if (op[0] & 5) throw op[1];
       return { value: op[0] ? op[1] : void 0, done: true };
@@ -6157,13 +6157,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
 
   // node_modules/.pnpm/class-validator@0.14.4/node_modules/class-validator/esm5/decorator/common/ValidateNested.js
   var __assign2 = function() {
-    __assign2 = Object.assign || function(t) {
+    __assign2 = Object.assign || function(t2) {
       for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
         for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-          t[p] = s[p];
+          t2[p] = s[p];
       }
-      return t;
+      return t2;
     };
     return __assign2.apply(this, arguments);
   };
@@ -7892,8 +7892,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
   var arraySome_default = arraySome;
 
   // node_modules/.pnpm/lodash-es@4.18.1/node_modules/lodash-es/_cacheHas.js
-  function cacheHas(cache, key) {
-    return cache.has(key);
+  function cacheHas(cache2, key) {
+    return cache2.has(key);
   }
   var cacheHas_default = cacheHas;
 
@@ -8191,19 +8191,189 @@ One of mods you are using is using an old version of SDK. It will work for now b
     return item?.Asset?.Description;
   }
 
+  // src/constants.ts
+  var COMPAT_PADLOCK_NAME = "DeviousPadlock";
+  var PACT_PADLOCK_NAME = "PactPadlock";
+  function isKnownPadlockName(name) {
+    return name === COMPAT_PADLOCK_NAME || name === PACT_PADLOCK_NAME;
+  }
+  var GITHUB_REPO_URL = "https://github.com/heitaoplay/PACT";
+  var LOCALIZATION_BASE_URL = "https://heitaoplay.github.io/PACT/localization";
+  var KNOWN_CHEAT_COMMANDS = [
+    "/release",
+    "/totalrelease",
+    "/quit",
+    "/wardrobe",
+    "/boost",
+    "/infolock",
+    "/removecollar",
+    "/resetdifficulty",
+    "/safeworditem",
+    "/solidity",
+    "/unlock",
+    "/untie"
+  ];
+  var DEVIOUS_PADLOCK_ITEM_PROPERTIES_TO_COMPARE = [
+    "TypeRecord",
+    "LockMemberName",
+    "OverridePriority",
+    "PunishOrgasm",
+    "PunishStandup",
+    "PunishStruggle",
+    "PunishStruggleOther",
+    "ShockLevel",
+    "ShowText",
+    "TriggerValues",
+    "InflateLevel",
+    "Intensity"
+  ];
+  var DEVIOUS_PADLOCK_MARKER = "\u200B";
+  var DEVIOUS_PADLOCK_MAX_TRIGGER_COUNT = 8;
+  var DEVIOUS_PADLOCK_MINIMUM_FIRST_TRIGGER_INTERVAL = 1e3 * 20;
+  var DEVIOUS_PADLOCK_COOLDOWN_TIME = 1e3 * 60 * 2;
+  var CRAFTING_PARTIAL_KEYS = [
+    "Name",
+    "MemberName",
+    "MemberNumber",
+    "Description",
+    "Effects",
+    "Private"
+  ];
+
+  // src/modules/i18n.ts
+  var PACT_LOCALES = ["cn", "en", "fr", "de", "ru", "tw", "ua"];
+  var LOCALE_LABELS = {
+    auto: "\u8DDF\u968F\u6E38\u620F\u8BED\u8A00",
+    cn: "\u7B80\u4F53\u4E2D\u6587",
+    tw: "\u7E41\u9AD4\u4E2D\u6587",
+    en: "English",
+    fr: "Fran\xE7ais",
+    de: "Deutsch",
+    ru: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439",
+    ua: "\u0423\u043A\u0440\u0430\u0457\u043D\u0441\u044C\u043A\u0430"
+  };
+  var overrideGetter = () => void 0;
+  function setLocaleOverrideGetter(getter) {
+    overrideGetter = getter;
+  }
+  var cache = {};
+  function getNestedValue2(obj, path) {
+    if (!obj || !path) return void 0;
+    let current = obj;
+    for (const key of path.split(".")) {
+      if (current && typeof current === "object" && key in current) {
+        current = current[key];
+      } else {
+        return void 0;
+      }
+    }
+    return typeof current === "string" ? current : void 0;
+  }
+  function processReplacements2(text, replacements) {
+    if (!replacements) return text;
+    let result = text;
+    for (const [key, value] of Object.entries(replacements)) {
+      result = result.replaceAll("$" + key, String(value));
+    }
+    return result;
+  }
+  function currentLocale() {
+    const override = overrideGetter();
+    if (override && override !== "auto" && PACT_LOCALES.includes(override)) {
+      return override;
+    }
+    const gameLang = String(TranslationLanguage || "EN").toLowerCase();
+    return PACT_LOCALES.includes(gameLang) ? gameLang : "cn";
+  }
+  async function loadLocales() {
+    const wanted = /* @__PURE__ */ new Set(["cn", currentLocale()]);
+    for (const locale of wanted) {
+      if (cache[locale]) continue;
+      try {
+        const response = await fetch(`${LOCALIZATION_BASE_URL}/${locale}.json?=${Date.now()}`);
+        if (response.ok) cache[locale] = await response.json();
+      } catch (e) {
+      }
+    }
+  }
+  async function switchLocale(locale) {
+    if (cache[locale]) return;
+    try {
+      const response = await fetch(`${LOCALIZATION_BASE_URL}/${locale}.json?=${Date.now()}`);
+      if (response.ok) cache[locale] = await response.json();
+    } catch (e) {
+    }
+  }
+  function t(tag, replacements) {
+    const locale = currentLocale();
+    const value = getNestedValue2(cache[locale], tag) ?? getNestedValue2(cache["cn"], tag);
+    if (value) return processReplacements2(value, replacements);
+    return getText(tag, replacements);
+  }
+
+  // src/modules/l10nMessage.ts
+  var L10N_TAG = "PACT_L10N";
+  function sendLocalizedAction(tag, replacements = {}) {
+    if (!ServerPlayerIsInChatRoom()) return;
+    const fallback = t(tag, replacements);
+    const payload = JSON.stringify({ tag, data: replacements });
+    const serverSend = ServerSend;
+    serverSend("ChatRoomChat", {
+      Content: "Beep",
+      Type: "Action",
+      Dictionary: [
+        // 让各语言的 Beep 前缀都替换成 msg，避免显示"发送私聊"前缀
+        { Tag: "Beep", Text: "msg" },
+        { Tag: "\u53D1\u9001\u79C1\u804A", Text: "msg" },
+        { Tag: "Biep", Text: "msg" },
+        { Tag: "Sonner", Text: "msg" },
+        { Tag: "\u0417\u0432\u0443\u043A\u043E\u0432\u043E\u0439 \u0441\u0438\u0433\u043D\u0430\u043B", Text: "msg" },
+        { Tag: "msg", Text: fallback },
+        // 我们自己的 L10N 载荷
+        { Tag: L10N_TAG, ns: "pact", data: payload }
+      ]
+    });
+  }
+  var hookInstalled = false;
+  function installL10NMessageHook() {
+    if (hookInstalled) return;
+    hookInstalled = true;
+    hookFunction("ChatRoomMessage", HookPriority.ADD_BEHAVIOR, (args, next) => {
+      const data = args[0];
+      const dictionary = data?.Dictionary;
+      if (Array.isArray(dictionary)) {
+        const l10n = dictionary.find(
+          (d) => d?.Tag === L10N_TAG && typeof d.data === "string"
+        );
+        if (l10n) {
+          try {
+            const parsed = JSON.parse(l10n.data);
+            const localized = t(parsed.tag, parsed.data);
+            const msgEntry = dictionary.find(
+              (d) => d?.Tag === "msg" && typeof d.Text === "string"
+            );
+            if (msgEntry) msgEntry.Text = localized;
+          } catch (e) {
+          }
+        }
+      }
+      return next(args);
+    });
+  }
+
   // src/subscreens/deviousPadlockSettingsSubscreen.ts
   var basePadlockNames = {
-    ["ExclusivePadlock" /* EXCLUSIVE */]: () => getText("settings.devious_padlock_editor.base_padlocks.exclusive_padlock"),
-    ["LoversPadlock" /* LOVERS */]: () => getText("settings.devious_padlock_editor.base_padlocks.lovers_padlock"),
-    ["OwnerPadlock" /* OWNER */]: () => getText("settings.devious_padlock_editor.base_padlocks.owner_padlock")
+    ["ExclusivePadlock" /* EXCLUSIVE */]: () => t("settings.devious_padlock_editor.base_padlocks.exclusive_padlock"),
+    ["LoversPadlock" /* LOVERS */]: () => t("settings.devious_padlock_editor.base_padlocks.lovers_padlock"),
+    ["OwnerPadlock" /* OWNER */]: () => t("settings.devious_padlock_editor.base_padlocks.owner_padlock")
   };
   var minimumRolesNames = {
-    [0 /* EVERYONE_EXCEPT_WEARER */]: () => getText("common.minimum_roles.public"),
-    [4 /* FRIEND */]: () => getText("common.minimum_roles.friend"),
-    [5 /* WHITELIST */]: () => getText("common.minimum_roles.whitelist"),
-    [1 /* FAMILY */]: () => getText("common.minimum_roles.family"),
-    [2 /* LOVER */]: () => getText("common.minimum_roles.lover"),
-    [3 /* OWNER */]: () => getText("common.minimum_roles.owner")
+    [0 /* EVERYONE_EXCEPT_WEARER */]: () => t("common.minimum_roles.public"),
+    [4 /* FRIEND */]: () => t("common.minimum_roles.friend"),
+    [5 /* WHITELIST */]: () => t("common.minimum_roles.whitelist"),
+    [1 /* FAMILY */]: () => t("common.minimum_roles.family"),
+    [2 /* LOVER */]: () => t("common.minimum_roles.lover"),
+    [3 /* OWNER */]: () => t("common.minimum_roles.owner")
   };
   var DeviousPadlockSettingsSubscreen = class extends BaseSubscreen {
     get name() {
@@ -8229,10 +8399,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
     generalKeyDown(e) {
       if (this.pincodeCombinationInputs.length === 0) return;
       if (e.key === "Backspace") {
-        const t = this.pincodeCombinationInputs.toReversed().find((w) => w.value !== "");
-        if (t) {
-          t.value = "";
-          t.focus();
+        const t2 = this.pincodeCombinationInputs.toReversed().find((w) => w.value !== "");
+        if (t2) {
+          t2.value = "";
+          t2.focus();
         }
         return e.preventDefault();
       }
@@ -8262,7 +8432,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         if (Array.isArray(combinationElement)) combinationElement.forEach((e) => e.style.setProperty("border-color", "green", "important"));
         else combinationElement.style.setProperty("border-color", "green", "important");
         toastsManager.success({
-          message: getText("toasts.correct_combination"),
+          message: t("toasts.correct_combination"),
           duration: 3e3
         });
       } else {
@@ -8276,8 +8446,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
           combinationElement.style.setProperty("border-color", "red", "important");
         }
       }
-      document.querySelectorAll("button").forEach((b) => b.textContent === getText("common.save") && b.classList.toggle("zcDisabled", !this.canEdit()));
-      document.querySelectorAll("button").forEach((b) => b.textContent === getText("settings.devious_padlock_editor.remove_padlock") && b.classList.toggle("zcDisabled", !this.combinationToUnlock.isCorrect));
+      document.querySelectorAll("button").forEach((b) => b.textContent === t("common.save") && b.classList.toggle("zcDisabled", !this.canEdit()));
+      document.querySelectorAll("button").forEach((b) => b.textContent === t("settings.devious_padlock_editor.remove_padlock") && b.classList.toggle("zcDisabled", !this.combinationToUnlock.isCorrect));
     }
     constructor(args) {
       super();
@@ -8343,7 +8513,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         width: 400,
         padding: 4,
         variant: "filled",
-        text: getText("common.save"),
+        text: t("common.save"),
         isDisabled: () => !this.canEdit(),
         onClick: async () => {
           if (this.mode === "inspect-padlock") {
@@ -8360,9 +8530,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
               if (result.valid) {
                 await changePadlockSettings(this.itemGroupName, result.data);
                 const itemName = smartGetItemName(InventoryGet(Player, this.itemGroupName));
-                messagesManager.sendAction(
-                  getText("actions.action_self_config_changed", { name: getNickname(Player), item: itemName })
-                );
+                sendLocalizedAction("actions.action_self_config_changed", { name: getNickname(Player), item: itemName });
               }
             } else {
               messagesManager.sendPacket("changePadlockSettings", {
@@ -8388,7 +8556,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
             }
             syncStorage();
             toastsManager.success({
-              message: getText("toasts.profile_saved"),
+              message: t("toasts.profile_saved"),
               duration: 3e3
             });
           }
@@ -8401,12 +8569,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
         width: 1725,
         tabs: [
           {
-            name: getText("settings.devious_padlock_editor.tabs.general"),
+            name: t("settings.devious_padlock_editor.tabs.general"),
             load: () => {
               this.generalKeyDownListener = this.generalKeyDown.bind(this);
               window.addEventListener("keydown", this.generalKeyDownListener);
               this.createText({
-                text: getText("settings.devious_padlock_editor.protected_from_cheats"),
+                text: t("settings.devious_padlock_editor.protected_from_cheats"),
                 x: 100,
                 y: 200,
                 width: 500,
@@ -8415,7 +8583,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 padding: 2
               }).style.textAlign = "center";
               this.createText({
-                text: getText("settings.devious_padlock_editor.member_number_on_padlock") + " " + this.padlockSettings.owner,
+                text: t("settings.devious_padlock_editor.member_number_on_padlock") + " " + this.padlockSettings.owner,
                 width: 800,
                 x: 100,
                 y: 400
@@ -8423,25 +8591,25 @@ One of mods you are using is using an old version of SDK. It will work for now b
               this.createText({
                 x: 100,
                 y: 480,
-                text: getText("settings.devious_padlock_editor.padlock_can_be_unlocked")
+                text: t("settings.devious_padlock_editor.padlock_can_be_unlocked")
               }).style.fontWeight = "bold";
               this.createText({
                 x: 140,
                 y: 540,
                 width: 800,
-                text: getText("settings.devious_padlock_editor.unlock_by_key_note")
+                text: t("settings.devious_padlock_editor.unlock_by_key_note")
               });
               this.createText({
                 x: 140,
                 y: 730,
                 width: 800,
-                text: getText("settings.devious_padlock_editor.unlock_by_timer_note")
+                text: t("settings.devious_padlock_editor.unlock_by_timer_note")
               });
               this.createText({
                 x: 140,
                 y: 830,
                 width: 800,
-                text: getText("settings.devious_padlock_editor.unlock_by_code_note")
+                text: t("settings.devious_padlock_editor.unlock_by_code_note")
               });
               if (this.mode === "inspect-padlock") {
                 this.createButton({
@@ -8452,17 +8620,17 @@ One of mods you are using is using an old version of SDK. It will work for now b
                   width: 90,
                   height: 90,
                   tooltip: {
-                    text: getText("tooltips.export_profile"),
+                    text: t("tooltips.export_profile"),
                     position: "left"
                   },
                   onClick: async () => {
                     const result = await dialogsManager.prompt({
-                      message: getText("dialogs.name_of_profile")
+                      message: t("dialogs.name_of_profile")
                     });
                     if (result === false || result.trim() === "") return;
                     modStorage.deviousPadlock.profiles ??= [];
                     const configIndex = modStorage.deviousPadlock.profiles.findIndex((c) => c.name === result);
-                    if (configIndex !== -1 && await dialogsManager.confirm({ message: getText("dialogs.confirm_profile_overwriting") }) === false) return;
+                    if (configIndex !== -1 && await dialogsManager.confirm({ message: t("dialogs.confirm_profile_overwriting") }) === false) return;
                     const { owner, item, combination, ...rest } = cloneDeep_default(this.padlockSettings);
                     const syncConfig = {
                       name: result,
@@ -8479,7 +8647,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
               }
               if (this.mode === "inspect-padlock" && typeof this.padlockSettings.combination?.hash === "string") {
                 this.createText({
-                  text: getText("settings.devious_padlock_editor.enter_combination"),
+                  text: t("settings.devious_padlock_editor.enter_combination"),
                   anchor: "top-right",
                   x: 400,
                   y: 220,
@@ -8492,7 +8660,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                     y: 280,
                     width: 400,
                     padding: 2,
-                    placeholder: this.padlockSettings.combination.type === "password" ? getText("settings.devious_padlock_editor.password_placeholder") : getText("settings.devious_padlock_editor.pin_placeholder"),
+                    placeholder: this.padlockSettings.combination.type === "password" ? t("settings.devious_padlock_editor.password_placeholder") : t("settings.devious_padlock_editor.pin_placeholder"),
                     value: this.combinationToUnlock.value,
                     onInput: () => this.checkCombination(combination)
                   });
@@ -8524,7 +8692,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                   }
                 }
                 this.createButton({
-                  text: getText("settings.devious_padlock_editor.remove_padlock"),
+                  text: t("settings.devious_padlock_editor.remove_padlock"),
                   anchor: "top-right",
                   x: 400,
                   y: 450,
@@ -8532,7 +8700,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                   isDisabled: () => !this.combinationToUnlock.isCorrect,
                   onClick: async () => {
                     const confirmation = await dialogsManager.confirm({
-                      message: getText("dialogs.confirm_padlock_removing")
+                      message: t("dialogs.confirm_padlock_removing")
                     });
                     if (!confirmation) return;
                     if (this.target.IsPlayer()) {
@@ -8543,9 +8711,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                         InventoryUnlock(Player, this.itemGroupName);
                         ChatRoomCharacterUpdate(Player);
                         syncStorage();
-                        messagesManager.sendAction(
-                          getText("actions.action_self_unlocked", { name: getNickname(Player), item: itemName })
-                        );
+                        sendLocalizedAction("actions.action_self_unlocked", { name: getNickname(Player), item: itemName });
                         this.exit();
                       }
                     } else {
@@ -8560,7 +8726,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
               }
               if (this.padlockSettings.unlockTime) {
                 this.createText({
-                  text: `${getText("settings.devious_padlock_editor.timer_expires_at")} ${new Date(this.padlockSettings.unlockTime).toUTCString()}`,
+                  text: `${t("settings.devious_padlock_editor.timer_expires_at")} ${new Date(this.padlockSettings.unlockTime).toUTCString()}`,
                   x: 1200,
                   y: 600,
                   width: 650
@@ -8572,7 +8738,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
             }
           },
           {
-            name: getText("settings.devious_padlock_editor.tabs.locking"),
+            name: t("settings.devious_padlock_editor.tabs.locking"),
             run: () => {
               this.drawPolylineArrow({
                 points: [
@@ -8613,7 +8779,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
             },
             load: () => {
               this.createText({
-                text: getText("settings.devious_padlock_editor.combination"),
+                text: t("settings.devious_padlock_editor.combination"),
                 width: 850,
                 x: 100,
                 y: 220,
@@ -8621,7 +8787,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 padding: 2
               });
               const combinationTypeBtn = this.createButton({
-                text: `${getText("settings.devious_padlock_editor.type_label")} ${this.combinationToLock.type === "password" ? getText("settings.devious_padlock_editor.password_placeholder") : getText("settings.devious_padlock_editor.pin_placeholder")}`,
+                text: `${t("settings.devious_padlock_editor.type_label")} ${this.combinationToLock.type === "password" ? t("settings.devious_padlock_editor.password_placeholder") : t("settings.devious_padlock_editor.pin_placeholder")}`,
                 width: 850,
                 x: 100,
                 y: 325,
@@ -8629,13 +8795,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 isDisabled: () => !this.canEdit(),
                 onClick: () => {
                   this.combinationToLock.type = this.combinationToLock.type === "password" ? "PIN-Code" : "password";
-                  combinationTypeBtn.textContent = `${getText("settings.devious_padlock_editor.type_label")} ${this.combinationToLock.type === "password" ? getText("settings.devious_padlock_editor.password_placeholder") : getText("settings.devious_padlock_editor.pin_placeholder")}`;
+                  combinationTypeBtn.textContent = `${t("settings.devious_padlock_editor.type_label")} ${this.combinationToLock.type === "password" ? t("settings.devious_padlock_editor.password_placeholder") : t("settings.devious_padlock_editor.pin_placeholder")}`;
                   combination.setAttribute("maxlength", this.combinationToLock.type === "password" ? "25" : "6");
                   combination.setAttribute("minlength", this.combinationToLock.type === "password" ? "1" : "6");
                 }
               });
               const combination = this.createInput({
-                placeholder: getText("settings.devious_padlock_editor.combination_placeholder"),
+                placeholder: t("settings.devious_padlock_editor.combination_placeholder"),
                 x: 100,
                 y: 435,
                 width: 850,
@@ -8651,14 +8817,14 @@ One of mods you are using is using an old version of SDK. It will work for now b
               combination.setAttribute("maxlength", this.combinationToLock.type === "password" ? "25" : "6");
               combination.setAttribute("minlength", this.combinationToLock.type === "password" ? "1" : "6");
               this.createButton({
-                text: getText("common.reset"),
+                text: t("common.reset"),
                 x: 100,
                 y: 540,
                 padding: 2,
                 isDisabled: () => !this.canEdit(),
                 onClick: () => {
                   toastsManager.success({
-                    message: getText("toasts.combination_reset"),
+                    message: t("toasts.combination_reset"),
                     duration: 3500
                   });
                   this.combinationToLock.value = "";
@@ -8667,7 +8833,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 }
               });
               this.createText({
-                text: getText("settings.devious_padlock_editor.unlock_time"),
+                text: t("settings.devious_padlock_editor.unlock_time"),
                 x: 1050,
                 y: 220,
                 width: 850,
@@ -8685,7 +8851,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 y: 325,
                 width: 850,
                 padding: 2,
-                placeholder: getText("settings.devious_padlock_editor.time_placeholder"),
+                placeholder: t("settings.devious_padlock_editor.time_placeholder"),
                 value: unlockTimeValue,
                 onChange: () => {
                   this.padlockSettings.unlockTime = new Date(unlockTime.value).toISOString();
@@ -8694,14 +8860,14 @@ One of mods you are using is using an old version of SDK. It will work for now b
               });
               unlockTime.setAttribute("type", "datetime-local");
               this.createButton({
-                text: getText("common.reset"),
+                text: t("common.reset"),
                 x: 1050,
                 y: 430,
                 padding: 2,
                 isDisabled: () => !this.canEdit(),
                 onClick: () => {
                   toastsManager.success({
-                    message: getText("toasts.timer_reset"),
+                    message: t("toasts.timer_reset"),
                     duration: 3500
                   });
                   this.padlockSettings.unlockTime = "";
@@ -8709,7 +8875,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 }
               });
               this.createText({
-                text: getText("settings.devious_padlock_editor.base_lock"),
+                text: t("settings.devious_padlock_editor.base_lock"),
                 x: 100,
                 y: 660,
                 width: 850,
@@ -8734,7 +8900,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 }
               });
               this.createText({
-                text: getText("settings.devious_padlock_editor.additional_unlock_methods"),
+                text: t("settings.devious_padlock_editor.additional_unlock_methods"),
                 x: 80,
                 y: 210,
                 width: 400,
@@ -8744,7 +8910,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 padding: 2
               });
               this.createText({
-                text: getText("settings.devious_padlock_editor.base_lock_description"),
+                text: t("settings.devious_padlock_editor.base_lock_description"),
                 x: 510,
                 y: 75,
                 width: 510,
@@ -8757,10 +8923,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
             }
           },
           {
-            name: getText("settings.devious_padlock_editor.tabs.key_holders"),
+            name: t("settings.devious_padlock_editor.tabs.key_holders"),
             load: () => {
               this.createText({
-                text: getText("settings.devious_padlock_editor.minimum_role"),
+                text: t("settings.devious_padlock_editor.minimum_role"),
                 x: 100,
                 y: 200,
                 width: 800
@@ -8779,7 +8945,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 }
               });
               this.createInputList({
-                title: getText("settings.devious_padlock_editor.member_numbers"),
+                title: t("settings.devious_padlock_editor.member_numbers"),
                 x: 100,
                 y: 425,
                 width: 800,
@@ -8796,7 +8962,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 y: 210,
                 width: 700,
                 height: 200,
-                text: getText("settings.devious_padlock_editor.minimum_role_description"),
+                text: t("settings.devious_padlock_editor.minimum_role_description"),
                 withBackground: true,
                 padding: 2
               });
@@ -8805,7 +8971,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 y: 450,
                 width: 900,
                 height: 175,
-                text: getText("settings.devious_padlock_editor.member_numbers_description"),
+                text: t("settings.devious_padlock_editor.member_numbers_description"),
                 withBackground: true,
                 padding: 2
               });
@@ -8850,7 +9016,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
             }
           },
           {
-            name: getText("settings.devious_padlock_editor.tabs.note"),
+            name: t("settings.devious_padlock_editor.tabs.note"),
             load: () => {
               const note = this.createInput({
                 x: 200,
@@ -8859,7 +9025,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 height: 600,
                 textArea: true,
                 value: this.padlockSettings.note,
-                placeholder: getText("settings.devious_padlock_editor.note_placeholder"),
+                placeholder: t("settings.devious_padlock_editor.note_placeholder"),
                 isDisabled: () => !this.canEdit(),
                 onChange: () => {
                   this.padlockSettings.note = note.value;
@@ -8868,10 +9034,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
             }
           },
           {
-            name: getText("settings.devious_padlock_editor.tabs.advanced"),
+            name: t("settings.devious_padlock_editor.tabs.advanced"),
             load: () => {
               this.createCheckbox({
-                text: getText("settings.devious_padlock_editor.prevent_cheat_commands"),
+                text: t("settings.devious_padlock_editor.prevent_cheat_commands"),
                 x: 100,
                 y: 200,
                 width: 800,
@@ -8884,7 +9050,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
             }
           },
           this.mode === "inspect-padlock" && {
-            name: getText("settings.devious_padlock_editor.tabs.syncing"),
+            name: t("settings.devious_padlock_editor.tabs.syncing"),
             run: async () => {
               DrawCharacter(this.syncTabCanvasCharacter, 1550, 125, 0.85, true);
               for (const group of AssetGroup) {
@@ -8919,7 +9085,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
               this.syncingClickListener = this.syncingClick.bind(this);
               window.addEventListener("click", this.syncingClickListener);
               this.saveButtonElement.style.display = "none";
-              this.syncingSelectedProfileName = getText("settings.devious_padlock_editor.current_config");
+              this.syncingSelectedProfileName = t("settings.devious_padlock_editor.current_config");
               const { item, owner, ...rest } = this.padlockSettings;
               this.syncingSelectedProfile ??= {};
               this.syncingSelectedProfile.padlockSettings = cloneDeep_default(rest);
@@ -8938,7 +9104,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 }
               });
               this.createText({
-                text: getText("settings.devious_padlock_editor.zones_you_can_sync"),
+                text: t("settings.devious_padlock_editor.zones_you_can_sync"),
                 x: 1300,
                 y: 220,
                 fontSize: 2.5,
@@ -8960,7 +9126,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 }
               });
               this.createText({
-                text: getText("settings.devious_padlock_editor.zones_you_cant_sync"),
+                text: t("settings.devious_padlock_editor.zones_you_cant_sync"),
                 x: 1300,
                 y: 300,
                 fontSize: 2.5,
@@ -8982,7 +9148,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 }
               });
               this.createText({
-                text: getText("settings.devious_padlock_editor.zones_to_sync"),
+                text: t("settings.devious_padlock_editor.zones_to_sync"),
                 x: 1300,
                 y: 400,
                 fontSize: 2.5,
@@ -9004,7 +9170,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 }
               });
               this.createText({
-                text: getText("settings.devious_padlock_editor.zones_already_synced"),
+                text: t("settings.devious_padlock_editor.zones_already_synced"),
                 x: 1300,
                 y: 480,
                 fontSize: 2.5,
@@ -9012,7 +9178,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 height: 60
               });
               this.createText({
-                text: getText("settings.devious_padlock_editor.profile_heading"),
+                text: t("settings.devious_padlock_editor.profile_heading"),
                 x: 200,
                 y: 220,
                 width: 600,
@@ -9025,8 +9191,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 width: 600,
                 options: [
                   {
-                    name: getText("settings.devious_padlock_editor.current_config"),
-                    text: getText("settings.devious_padlock_editor.current_config_description")
+                    name: t("settings.devious_padlock_editor.current_config"),
+                    text: t("settings.devious_padlock_editor.current_config_description")
                   },
                   ...modStorage.deviousPadlock.profiles?.map((c) => ({
                     name: c.name,
@@ -9034,7 +9200,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                   })) ?? []
                 ],
                 onChange: async (configName) => {
-                  if (configName === getText("settings.devious_padlock_editor.current_config") || configName === "Current Config") {
+                  if (configName === t("settings.devious_padlock_editor.current_config") || configName === "Current Config") {
                     const { item: item2, owner: owner2, ...rest3 } = this.padlockSettings;
                     this.syncingSelectedProfile.padlockSettings = rest3;
                     this.syncingSelectedProfileName = configName;
@@ -9058,7 +9224,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 currentOption: this.syncingSelectedProfileName
               });
               this.createButton({
-                text: getText("settings.devious_padlock_editor.sync_padlocks"),
+                text: t("settings.devious_padlock_editor.sync_padlocks"),
                 x: 200,
                 y: 815,
                 padding: 2,
@@ -9088,13 +9254,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
                   }
                   this.exit();
                   toastsManager.success({
-                    message: getText("toasts.profile_applied"),
+                    message: t("toasts.profile_applied"),
                     duration: 3e3
                   });
                 }
               });
               this.createText({
-                text: getText("settings.devious_padlock_editor.sync_description"),
+                text: t("settings.devious_padlock_editor.sync_description"),
                 x: 200,
                 y: 450,
                 width: 800,
@@ -9107,14 +9273,32 @@ One of mods you are using is using an old version of SDK. It will work for now b
               this.saveButtonElement.style.display = "";
             }
           }
-        ].filter((t) => !!t),
-        currentTabName: getText("settings.devious_padlock_editor.tabs.general")
+        ].filter((t2) => !!t2),
+        currentTabName: t("settings.devious_padlock_editor.tabs.general")
       });
     }
     onExit() {
+      if (this.generalKeyDownListener) {
+        window.removeEventListener("keydown", this.generalKeyDownListener);
+        this.generalKeyDownListener = null;
+      }
+      if (this.syncingClickListener) {
+        window.removeEventListener("click", this.syncingClickListener);
+        this.syncingClickListener = null;
+      }
       if (this.mode === "inspect-padlock") {
         if (ChatRoomData !== null) CommonSetScreen("Online", "ChatRoom");
         else CommonSetScreen("Room", "MainHall");
+      }
+    }
+    onUnload() {
+      if (this.generalKeyDownListener) {
+        window.removeEventListener("keydown", this.generalKeyDownListener);
+        this.generalKeyDownListener = null;
+      }
+      if (this.syncingClickListener) {
+        window.removeEventListener("click", this.syncingClickListener);
+        this.syncingClickListener = null;
       }
     }
   };
@@ -9127,18 +9311,18 @@ One of mods you are using is using an old version of SDK. It will work for now b
       this.groupName = groupName;
     }
     get name() {
-      return getText("common.inspect_padlock");
+      return t("common.inspect_padlock");
     }
     onLoad() {
       this.createText({
-        text: getText("common.padlock_not_synced_title"),
+        text: t("common.padlock_not_synced_title"),
         x: 60,
         y: 180,
         width: 600,
         height: 60
       });
       this.createText({
-        text: getText("common.padlock_not_synced_body", { group: this.groupName }),
+        text: t("common.padlock_not_synced_body", { group: this.groupName }),
         x: 60,
         y: 260,
         width: 620,
@@ -9180,18 +9364,18 @@ One of mods you are using is using an old version of SDK. It will work for now b
       const senderNumber = typeof sender === "number" ? sender : sender.MemberNumber;
       if (!hasPermissionForRemoteControl(senderNumber)) {
         return {
-          rejectReason: getText("remote.reject_min_role")
+          rejectReason: t("remote.reject_min_role")
         };
       }
       if (!ServerPlayerIsInChatRoom()) {
         return {
-          rejectReason: getText("remote.reject_not_in_room")
+          rejectReason: t("remote.reject_not_in_room")
         };
       }
       if (!remoteControlControllers.includes(senderNumber)) {
         remoteControlControllers.push(senderNumber);
       }
-      messagesManager.sendLocal(getText("remote.remote_connected", { name: senderName ?? "", num: senderNumber }));
+      messagesManager.sendLocal(t("remote.remote_connected", { name: senderName ?? "", num: senderNumber }));
       const pb = ServerPackItemPermissions(Player.PermissionItems);
       return {
         bundle: {
@@ -9239,9 +9423,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
         senderNumber
       );
       ChatRoomCharacterUpdate(Player);
-      messagesManager.sendLocal(getText("remote.remote_changed", { name: senderName ?? "", num: senderNumber }));
+      messagesManager.sendLocal(t("remote.remote_changed", { name: senderName ?? "", num: senderNumber }));
       if (modStorage.remoteControl.notifyOthers ?? true) {
-        messagesManager.sendAction(getText("remote.remote_action", { name: getNickname(Player) }));
+        sendLocalizedAction("remote.remote_action", { name: getNickname(Player) });
       }
       remoteControlControllers.splice(remoteControlControllers.indexOf(senderNumber), 1);
       return {
@@ -9264,8 +9448,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
       const C = CurrentCharacter;
       if (remoteControlIsInteracting) {
         const toastId = toastsManager.spinner({
-          title: getText("remote.remote_updating"),
-          message: getText("remote.remote_member_num", { num: C.MemberNumber ?? 0 })
+          title: t("remote.remote_updating"),
+          message: t("remote.remote_member_num", { num: C.MemberNumber ?? 0 })
         });
         const response = await messagesManager.sendRequest({
           type: "beep",
@@ -9280,18 +9464,18 @@ One of mods you are using is using an old version of SDK. It will work for now b
         DialogLeave();
         if (response.isError) {
           return toastsManager.error({
-            message: getText("remote.remote_not_applied"),
+            message: t("remote.remote_not_applied"),
             duration: 5e3
           });
         }
         if (response.data?.wasChanged) {
           toastsManager.success({
-            message: getText("remote.remote_applied"),
+            message: t("remote.remote_applied"),
             duration: 5e3
           });
         } else {
           toastsManager.error({
-            message: getText("remote.remote_not_applied"),
+            message: t("remote.remote_not_applied"),
             duration: 5e3
           });
         }
@@ -9309,17 +9493,17 @@ One of mods you are using is using an old version of SDK. It will work for now b
     });
     CommandCombine({
       Tag: "connect",
-      Description: getText("remote.remote_desc"),
+      Description: t("remote.remote_desc"),
       Action: async (argumentsString, message, args) => {
         const targetNumber = parseInt(args[0]);
         if (!targetNumber) {
           return messagesManager.sendLocal(
-            getText("remote.remote_example")
+            t("remote.remote_example")
           );
         }
         const toastId = toastsManager.spinner({
-          title: getText("remote.remote_connecting"),
-          message: getText("remote.remote_member_num", { num: targetNumber })
+          title: t("remote.remote_connecting"),
+          message: t("remote.remote_member_num", { num: targetNumber })
         });
         const response = await messagesManager.sendRequest({
           type: "beep",
@@ -9329,14 +9513,14 @@ One of mods you are using is using an old version of SDK. It will work for now b
         toastsManager.removeSpinner(toastId);
         if (response.isError) {
           return toastsManager.error({
-            title: getText("remote.remote_no_connection"),
-            message: getText("remote.remote_error_generic"),
+            title: t("remote.remote_no_connection"),
+            message: t("remote.remote_error_generic"),
             duration: 6e3
           });
         }
         if (response.data?.rejectReason) {
           return toastsManager.error({
-            title: getText("remote.remote_rejected"),
+            title: t("remote.remote_rejected"),
             message: response.data.rejectReason,
             duration: 6e3
           });
@@ -9471,55 +9655,6 @@ One of mods you are using is using an old version of SDK. It will work for now b
     })
   ], SyncPadlockMessageDto.prototype, "groupNames", 2);
 
-  // src/constants.ts
-  var COMPAT_PADLOCK_NAME = "DeviousPadlock";
-  var PACT_PADLOCK_NAME = "PactPadlock";
-  function isKnownPadlockName(name) {
-    return name === COMPAT_PADLOCK_NAME || name === PACT_PADLOCK_NAME;
-  }
-  var GITHUB_REPO_URL = "https://github.com/heitaoplay/PACT";
-  var LOCALIZATION_BASE_URL = "https://heitaoplay.github.io/PACT/localization";
-  var KNOWN_CHEAT_COMMANDS = [
-    "/release",
-    "/totalrelease",
-    "/quit",
-    "/wardrobe",
-    "/boost",
-    "/infolock",
-    "/removecollar",
-    "/resetdifficulty",
-    "/safeworditem",
-    "/solidity",
-    "/unlock",
-    "/untie"
-  ];
-  var DEVIOUS_PADLOCK_ITEM_PROPERTIES_TO_COMPARE = [
-    "TypeRecord",
-    "LockMemberName",
-    "OverridePriority",
-    "PunishOrgasm",
-    "PunishStandup",
-    "PunishStruggle",
-    "PunishStruggleOther",
-    "ShockLevel",
-    "ShowText",
-    "TriggerValues",
-    "InflateLevel",
-    "Intensity"
-  ];
-  var DEVIOUS_PADLOCK_MARKER = "\u200B";
-  var DEVIOUS_PADLOCK_MAX_TRIGGER_COUNT = 8;
-  var DEVIOUS_PADLOCK_MINIMUM_FIRST_TRIGGER_INTERVAL = 1e3 * 20;
-  var DEVIOUS_PADLOCK_COOLDOWN_TIME = 1e3 * 60 * 2;
-  var CRAFTING_PARTIAL_KEYS = [
-    "Name",
-    "MemberName",
-    "MemberNumber",
-    "Description",
-    "Effects",
-    "Private"
-  ];
-
   // src/dto/removePadlockMessageDto.ts
   var RemovePadlockMessageDto = class {
     combination;
@@ -9547,7 +9682,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     Wear: false,
     RemoveTime: 1e3,
     DynamicDescription(C) {
-      return getText("common.compat_padlock");
+      return t("common.compat_padlock");
     }
   };
   var pactPadlock = {
@@ -9560,7 +9695,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     Wear: false,
     RemoveTime: 1e3,
     DynamicDescription(C) {
-      return getText("common.pact_padlock");
+      return t("common.pact_padlock");
     }
   };
   var BasePadlock = /* @__PURE__ */ ((BasePadlock2) => {
@@ -9730,7 +9865,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       }
       const registeredAsset = AssetGet("Female3DCG", "ItemMisc", asset.Name);
       if (registeredAsset) {
-        registeredAsset.Description = getText(
+        registeredAsset.Description = t(
           asset.Name === PACT_PADLOCK_NAME ? "common.pact_padlock" : "common.compat_padlock"
         );
       }
@@ -10142,10 +10277,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
       if (ServerPlayerIsInChatRoom() && !deviousPadlockTriggerCooldown.state && padlocksChangedItemNames.length > 0 && Date.now() - lastPadlockAppearanceActionTime >= 3e3) {
         lastPadlockAppearanceActionTime = Date.now();
         if (padlocksChangedItemNames.length === 1) {
-          messagesManager.sendAction(getText("actions.action_reappear_one", { name: getNickname(Player), item: padlocksChangedItemNames[0] }));
+          sendLocalizedAction("actions.action_reappear_one", { name: getNickname(Player), item: padlocksChangedItemNames[0] });
         }
         if (padlocksChangedItemNames.length > 1) {
-          messagesManager.sendAction(getText("actions.action_reappear_many", { name: getNickname(Player), items: padlocksChangedItemNames.join(", ") }));
+          sendLocalizedAction("actions.action_reappear_many", { name: getNickname(Player), items: padlocksChangedItemNames.join(", ") });
         }
       }
       if (ServerPlayerIsInChatRoom() && restoredPadlockAppearance && !deviousPadlockTriggerCooldown.state) {
@@ -10158,7 +10293,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           if (Date.now() - deviousPadlockTriggerCooldown.firstTriggerTime < DEVIOUS_PADLOCK_MINIMUM_FIRST_TRIGGER_INTERVAL) {
             deviousPadlockTriggerCooldown.state = true;
             deviousPadlockTriggerCooldown.expiresAt = Date.now() + DEVIOUS_PADLOCK_COOLDOWN_TIME;
-            messagesManager.sendAction(`[\u5951\u9501] \u68C0\u6D4B\u5230\u9501\u53CD\u590D\u91CD\u73B0\uFF0C\u5DF2\u6682\u505C\u81EA\u52A8\u6062\u590D ${DEVIOUS_PADLOCK_COOLDOWN_TIME / (1e3 * 60)} \u5206\u949F\u3002\u82E5\u6709\u51B2\u7A81\uFF0C\u8BF7\u8BA9\u94A5\u5319\u6301\u6709\u4EBA\u53D6\u4E0B\u51B2\u7A81\u7684\u9501\u3002`);
+            sendLocalizedAction("actions.action_cooldown", { minutes: DEVIOUS_PADLOCK_COOLDOWN_TIME / (1e3 * 60) });
             setTimeout(() => {
               const wasCoolingDown = deviousPadlockTriggerCooldown.state;
               refreshDeviousPadlockCooldown();
@@ -10203,7 +10338,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       if (!item) continue;
       if (unlockTime && new Date(unlockTime) < /* @__PURE__ */ new Date()) {
         const itemName = smartGetItemName(item);
-        messagesManager.sendAction(getText("actions.action_timer_open", { name: getNickname(Player), item: itemName }));
+        sendLocalizedAction("actions.action_timer_open", { name: getNickname(Player), item: itemName });
         delete modStorage.deviousPadlock.itemGroups[groupName];
         unsyncItemGroups([groupName], false);
         syncStorage();
@@ -10436,9 +10571,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       }
       changePadlockSettings(data.groupName, result.data);
       const itemName = smartGetItemName(InventoryGet(Player, data.groupName));
-      messagesManager.sendAction(
-        getText("actions.action_config_changed", { sender: getNickname(sender), name: getNickname(Player), item: itemName })
-      );
+      sendLocalizedAction("actions.action_config_changed", { sender: getNickname(sender), name: getNickname(Player), item: itemName });
     });
     messagesManager.onPacket(
       "syncPadlockConfigurations",
@@ -10464,9 +10597,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           unlockItemInternally(Player, data.groupName);
           ChatRoomCharacterUpdate(Player);
           syncStorage();
-          messagesManager.sendAction(
-            getText("actions.action_unlocked_by_code", { sender: getNickname(sender), name: getNickname(Player), item: itemName })
-          );
+          sendLocalizedAction("actions.action_unlocked_by_code", { sender: getNickname(sender), name: getNickname(Player), item: itemName });
         }
       }
     });
@@ -10618,7 +10749,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           const icon = {
             name: PACT_PADLOCK_NAME,
             iconSrc: pact_lock_closed_default,
-            tooltipText: getText("common.lock_tooltip")
+            tooltipText: t("common.lock_tooltip")
           };
           return [icon];
         }
@@ -10676,9 +10807,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       let prevent = false;
       KNOWN_CHEAT_COMMANDS.forEach((c) => {
         if (command?.startsWith(c)) {
-          messagesManager.sendAction(
-            getText("actions.action_cheat_blocked", { name: getNickname(Player), cmd: c })
-          );
+          sendLocalizedAction("actions.action_cheat_blocked", { name: getNickname(Player), cmd: c });
           return prevent = true;
         }
       });
@@ -10917,25 +11046,25 @@ One of mods you are using is using an old version of SDK. It will work for now b
 
   // src/subscreens/deviousPadlockSubscreen.ts
   var putPadlockMinimumRolesNames = {
-    [3 /* PUBLIC */]: () => getText("common.minimum_roles.public"),
-    [0 /* FRIEND */]: () => getText("common.minimum_roles.friend"),
-    [1 /* WHITELIST */]: () => getText("common.minimum_roles.whitelist"),
-    [2 /* LOVER */]: () => getText("common.minimum_roles.lover"),
-    [4 /* OWNER */]: () => getText("common.minimum_roles.owner")
+    [3 /* PUBLIC */]: () => t("common.minimum_roles.public"),
+    [0 /* FRIEND */]: () => t("common.minimum_roles.friend"),
+    [1 /* WHITELIST */]: () => t("common.minimum_roles.whitelist"),
+    [2 /* LOVER */]: () => t("common.minimum_roles.lover"),
+    [4 /* OWNER */]: () => t("common.minimum_roles.owner")
   };
   var DeviousPadlockSubscreen = class extends BaseSubscreen {
     get name() {
-      return getText("common.devious_padlock");
+      return t("common.devious_padlock");
     }
     get buttonText() {
-      return getText("common.devious_padlock");
+      return t("common.devious_padlock");
     }
     get buttonIcon() {
       return createElement(LockKeyhole);
     }
     onLoad() {
       this.createCheckbox({
-        text: getText("settings.enabled"),
+        text: t("settings.enabled"),
         x: 100,
         y: 300,
         isChecked: !!modStorage.deviousPadlock.state,
@@ -10944,7 +11073,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
       });
       this.createText({
-        text: getText("settings.devious_padlock.minimum_role_to_put_padlock"),
+        text: t("settings.devious_padlock.minimum_role_to_put_padlock"),
         x: 100,
         y: 420,
         width: 600,
@@ -10964,7 +11093,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
       });
       this.createText({
-        text: getText("settings.devious_padlock.description"),
+        text: t("settings.devious_padlock.description"),
         x: 900,
         y: 250,
         width: 800,
@@ -10972,7 +11101,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         padding: 2
       });
       this.createText({
-        text: getText("settings.devious_padlock.escape_tip"),
+        text: t("settings.devious_padlock.escape_tip"),
         x: 900,
         y: 700,
         width: 800,
@@ -10984,24 +11113,24 @@ One of mods you are using is using an old version of SDK. It will work for now b
 
   // src/subscreens/remoteControlSubscreen.ts
   var remoteConnectMinimumRolesNames = {
-    [0 /* FRIEND */]: () => getText("common.minimum_roles.friend"),
-    [1 /* WHITELIST */]: () => getText("common.minimum_roles.whitelist"),
-    [2 /* LOVER */]: () => getText("common.minimum_roles.lover"),
-    [3 /* OWNER */]: () => getText("common.minimum_roles.owner")
+    [0 /* FRIEND */]: () => t("common.minimum_roles.friend"),
+    [1 /* WHITELIST */]: () => t("common.minimum_roles.whitelist"),
+    [2 /* LOVER */]: () => t("common.minimum_roles.lover"),
+    [3 /* OWNER */]: () => t("common.minimum_roles.owner")
   };
   var RemoteControlSubscreen = class extends BaseSubscreen {
     get name() {
-      return getText("settings.remote_control.name");
+      return t("settings.remote_control.name");
     }
     get buttonText() {
-      return getText("settings.remote_control.name");
+      return t("settings.remote_control.name");
     }
     get buttonIcon() {
       return createElement(Radio);
     }
     onLoad() {
       this.createCheckbox({
-        text: getText("settings.enabled"),
+        text: t("settings.enabled"),
         x: 100,
         y: 300,
         isChecked: !!modStorage.remoteControl.state,
@@ -11010,7 +11139,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
       });
       this.createCheckbox({
-        text: getText("settings.remote_control.notify_others"),
+        text: t("settings.remote_control.notify_others"),
         x: 100,
         y: 400,
         isChecked: modStorage.remoteControl.notifyOthers ?? true,
@@ -11019,7 +11148,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
       });
       this.createText({
-        text: getText("settings.remote_control.minimum_role_to_connect_remotely"),
+        text: t("settings.remote_control.minimum_role_to_connect_remotely"),
         x: 100,
         y: 520,
         width: 750,
@@ -11039,7 +11168,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
       });
       this.createText({
-        text: getText("settings.remote_control.description"),
+        text: t("settings.remote_control.description"),
         x: 925,
         y: 250,
         width: 800,
@@ -11052,10 +11181,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
   // src/subscreens/profilesSubscreen.ts
   var ProfilesSubscreen = class extends BaseSubscreen {
     get name() {
-      return getText("settings.profiles.name");
+      return t("settings.profiles.name");
     }
     get buttonText() {
-      return getText("settings.profiles.name");
+      return t("settings.profiles.name");
     }
     get buttonIcon() {
       return createElement(Save);
@@ -11063,7 +11192,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     onLoad() {
       if (!modStorage.deviousPadlock?.profiles || modStorage.deviousPadlock.profiles.length === 0) {
         this.createText({
-          text: getText("settings.profiles.profiles_empty"),
+          text: t("settings.profiles.profiles_empty"),
           width: 900,
           fontSize: 5,
           modules: {
@@ -11128,7 +11257,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           height: 80,
           onClick: async () => {
             const result = await dialogsManager.confirm({
-              message: getText("dialogs.confirm_config_deleting")
+              message: t("dialogs.confirm_config_deleting")
             });
             if (result) {
               modStorage.deviousPadlock.profiles = modStorage.deviousPadlock.profiles?.filter((c) => c.name !== config.name);
@@ -11488,6 +11617,29 @@ One of mods you are using is using an old version of SDK. It will work for now b
       return "\u9501\u5951 \xB7 PACT";
     }
     onLoad() {
+      const localeOptions = ["auto", ...PACT_LOCALES];
+      const currentOverride = modStorage.misc?.localeOverride ?? "auto";
+      this.createText({
+        text: t("settings.language.label"),
+        x: 220,
+        y: 140,
+        width: 700,
+        height: 40
+      });
+      this.createBackNextButton({
+        x: 220,
+        y: 180,
+        width: 700,
+        height: 60,
+        currentIndex: Math.max(0, localeOptions.indexOf(currentOverride)),
+        items: localeOptions.map((code) => [LOCALE_LABELS[code] ?? code, code]),
+        onChange: (value) => {
+          modStorage.misc ??= {};
+          modStorage.misc.localeOverride = value;
+          syncStorage();
+          if (value !== "auto") void switchLocale(value);
+        }
+      });
       [
         new DeviousPadlockSubscreen(),
         new ProfilesSubscreen(),
@@ -11515,16 +11667,16 @@ One of mods you are using is using an old version of SDK. It will work for now b
         });
       });
       this.createText({
-        text: getText("common.lock_status_legend"),
+        text: t("common.lock_status_legend"),
         x: 220,
         y: 580,
         width: 700,
         height: 40
       });
       const states = [
-        { image: pact_lock_closed_default, label: getText("common.lock_state_closed") },
-        { image: pact_lock_unlocking_default, label: getText("common.lock_state_unlocking") },
-        { image: pact_lock_fully_unlocked_default, label: getText("common.lock_state_unlocked") }
+        { image: pact_lock_closed_default, label: t("common.lock_state_closed") },
+        { image: pact_lock_unlocking_default, label: t("common.lock_state_unlocking") },
+        { image: pact_lock_fully_unlocked_default, label: t("common.lock_state_unlocked") }
       ];
       states.forEach((state, i) => {
         const x = 250 + i * 220;
@@ -11545,7 +11697,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }).style.textAlign = "center";
       });
       this.createCard({
-        name: getText("common.version"),
+        name: t("common.version"),
         value: MOD_DATA.version,
         anchor: "bottom-right",
         icon: createElement(GitPullRequest),
@@ -11566,7 +11718,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         anchor: "bottom-right",
         icon: createElement(Bug),
         tooltip: {
-          text: getText("tooltips.report_bug_or_suggest_feature"),
+          text: t("tooltips.report_bug_or_suggest_feature"),
           position: "left"
         },
         href: GITHUB_REPO_URL + "/issues",
@@ -11586,7 +11738,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         anchor: "bottom-right",
         icon: createElement(CodeXml),
         tooltip: {
-          text: getText("tooltips.view_source_code_on_github"),
+          text: t("tooltips.view_source_code_on_github"),
           position: "left"
         },
         href: GITHUB_REPO_URL,
@@ -11607,7 +11759,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         icon: createElement(SquarePen),
         variant: "filled",
         tooltip: {
-          text: getText("tooltips.view_changelog"),
+          text: t("tooltips.view_changelog"),
           position: "left"
         },
         onClick: showChangelogModal
@@ -11764,8 +11916,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
     },
     localization: {
       locales: {
-        default: "zh-CN",
-        supported: ["zh-CN", "en", "ru"]
+        default: "cn",
+        // 与 BC 登录语言代码一致：cn/en/fr/de/ru/tw/ua（zois-core 会 toLowerCase 后匹配文件名）
+        supported: ["cn", "en", "fr", "de", "ru", "tw", "ua"]
       },
       translationsFolderPath: false ? `http://localhost:8000/localization` : LOCALIZATION_BASE_URL
     },
@@ -11774,10 +11927,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
     },
     onReady: initializePACT
   });
-  function initializePACT() {
+  async function initializePACT() {
     if (hasInitialized) return;
     hasInitialized = true;
     initStorage();
+    setLocaleOverrideGetter(() => modStorage.misc?.localeOverride);
+    await loadLocales();
+    installL10NMessageHook();
     loadSettingsMenu();
     loadDialogs();
     loadRemoteControl();
@@ -11786,7 +11942,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     });
     logger.log(`Ready! v${version2}`);
     toastsManager.success({
-      title: getText(`toasts.mod_loaded`, { name: "\u9501\u5951 \xB7 PACT" }),
+      title: t(`toasts.mod_loaded`, { name: "\u9501\u5951 \xB7 PACT" }),
       message: `v${version2}`,
       duration: 4e3
     });
@@ -11794,7 +11950,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       waitFor(() => !!document.getElementById("InputChat")).then(() => {
         modStorage.version = version2;
         syncStorage();
-        messagesManager.sendLocal(getText("toasts.mod_updated"));
+        messagesManager.sendLocal(t("toasts.mod_updated"));
       });
     }
   }

@@ -1,0 +1,145 @@
+{
+    "toasts": {
+        "mod_loaded": "$name завантажено",
+        "mod_updated": "锁契 · PACT оновлено до нової версії",
+        "correct_combination": "Правильний код",
+        "profile_saved": "Конфігурацію збережено",
+        "combination_reset": "Код скинуто",
+        "timer_reset": "Таймер скинуто",
+        "profile_applied": "Конфігурацію застосовано до вибраних замків"
+    },
+    "dialogs": {
+        "confirm_config_deleting": "Ви дійсно хочете видалити цю конфігурацію?",
+        "name_of_profile": "Назва конфігурації",
+        "confirm_profile_overwriting": "Конфігурація з такою назвою вже існує. Перезаписати?",
+        "confirm_padlock_removing": "Ви дійсно хочете зняти замок?"
+    },
+    "tooltips": {
+        "report_bug_or_suggest_feature": "Повідомити про помилку або запропонувати функцію",
+        "view_source_code_on_github": "Переглянути вихідний код на GitHub",
+        "export_profile": "Експортувати конфігурацію замка",
+        "view_changelog": "Переглянути історію змін"
+    },
+    "common": {
+        "devious_padlock": "Замок заповіту",
+        "compat_padlock": "Замок заповіту (сумісний з DOGS)",
+        "pact_padlock": "PACT · Замок заповіту",
+        "lock_tooltip": "Замкнено замком заповіту PACT",
+        "lock_status_legend": "Стани замка",
+        "lock_state_closed": "Замкнено",
+        "lock_state_unlocking": "Відмикання",
+        "lock_state_unlocked": "Відімкнено",
+        "version": "Версія",
+        "minimum_roles": {
+            "public": "Усі",
+            "friend": "Друг",
+            "whitelist": "Білий список",
+            "family": "Родина",
+            "lover": "Коханий",
+            "owner": "Господар"
+        },
+        "save": "Зберегти",
+        "reset": "Скинути",
+        "inspect_padlock": "Оглянути замок",
+        "padlock_not_synced_title": "Налаштування замка недоступні",
+        "padlock_not_synced_body": "Налаштування замка на $group ще не синхронізовано. Це може статися одразу після встановлення або якщо замок з іншого моду. Зачекайте й спробуйте знову, або попросіть власника ключа встановити замок повторно. Закрийте це вікно кнопкою виходу або Esc."
+    },
+    "settings": {
+        "enabled": "Увімкнено",
+        "devious_padlock": {
+            "minimum_role_to_put_padlock": "Мінімальна роль для встановлення замка",
+            "description": "Після встановлення носій не може зняти замок заповіту самостійно. У налаштуваннях можна додати нотатки та налаштувати права доступу. За замовчуванням ці замки вимкнені й не можуть використовуватися на вас, але ви можете змінити це будь-коли.",
+            "escape_tip": "Порада: якщо складність невисока, відьма зі школи магії може допомогти зняти замок."
+        },
+        "profiles": {
+            "name": "Профілі",
+            "profiles_empty": "Профілів поки немає."
+        },
+        "remote_control": {
+            "name": "Дистанційне керування",
+            "notify_others": "Сповіщати інших",
+            "minimum_role_to_connect_remotely": "Мінімальна роль для дистанційного підключення",
+            "description": "Дистанційне керування дозволяє уповноваженим користувачам змінювати ваш вигляд дистанційно, без перебування в одній кімнаті. Якщо керування вимкнено, ніхто не може використовувати його на вас. Введіть /connect [номер учасника] для підключення."
+        },
+        "devious_padlock_editor": {
+            "base_padlocks": {
+                "exclusive_padlock": "Ексклюзивний замок",
+                "lovers_padlock": "Замок коханців",
+                "owner_padlock": "Замок господаря"
+            },
+            "tabs": {
+                "general": "Загальне",
+                "locking": "Замкнення",
+                "key_holders": "Власники ключа",
+                "note": "Нотатка",
+                "advanced": "Додатково",
+                "syncing": "Синхронізація"
+            },
+            "protected_from_cheats": "Захист від читів",
+            "member_number_on_padlock": "Номер учасника на замку:",
+            "padlock_can_be_unlocked": "Цей замок може відкрити:",
+            "enter_combination": "Введіть код:",
+            "password_placeholder": "Пароль",
+            "pin_placeholder": "PIN-код",
+            "remove_padlock": "Зняти замок",
+            "timer_expires_at": "<b>Таймер закінчиться:</b>",
+            "combination": "<b>Код</b>",
+            "type_label": "Тип:",
+            "combination_placeholder": "Код",
+            "unlock_time": "<b>Час відкриття</b>",
+            "time_placeholder": "Час",
+            "base_lock": "<b>Базовий замок</b>",
+            "additional_unlock_methods": "Окрім ключа, замок можна відкрити іншими способами",
+            "base_lock_description": "Власник замка (той, хто його встановив) може обрати базовий замок у BC. Це зменшує спрацьовування через дії інших користувачів. Неексклюзивні базові замки вимикають власників ключів за номерами учасників і вимагають, щоб мінімальна роль була не нижчою за базовий замок.",
+            "minimum_role": "Мінімальна роль",
+            "member_numbers": "Номери учасників",
+            "minimum_role_description": "Мінімальна роль, яка завжди має ключ. Має відповідати вимогам базового замка.",
+            "member_numbers_description": "Номери учасників, які завжди мають ключ. Вимкнено, якщо базовий замок не Ексклюзивний.",
+            "note_placeholder": "Ви можете залишити нотатку, яку бачать інші користувачі 锁契 · PACT",
+            "prevent_cheat_commands": "Блокувати чит-команди",
+            "zones_you_can_sync": "Зони, які можна синхронізувати з обраним профілем",
+            "zones_you_cant_sync": "Зони, які не можна синхронізувати через обмеження",
+            "zones_to_sync": "Зони для синхронізації",
+            "zones_already_synced": "Вже синхронізовані зони",
+            "profile_heading": "<b>Профіль</b>",
+            "current_config": "Поточна конфігурація",
+            "current_config_description": "[Поточні налаштування замка]",
+            "sync_padlocks": "Синхронізувати замки",
+            "sync_description": "Синхронізувати вказані замки з вказаним профілем",
+            "unlock_by_key_note": "<b>1.</b> Ті, хто має ключ (власник, ті хто відповідає мінімальній ролі, та ті чий номер на замку)",
+            "unlock_by_timer_note": "<b>2.</b> Після закінчення таймера (якщо встановлено)",
+            "unlock_by_code_note": "<b>3.</b> Після введення правильного коду (якщо замок приймає коди)"
+        },
+        "language": {
+            "label": "Мова модуля"
+        }
+    },
+    "actions": {
+        "action_reappear_one": "Замок заповіту $name знову замкнувся на $item",
+        "action_reappear_many": "Замки $name знову з'явилися на: $items",
+        "action_timer_open": "Замок заповіту $name відкривається на $item з гучним клацанням",
+        "action_config_changed": "$sender змінив налаштування замка на $item у $name",
+        "action_unlocked_by_code": "$sender ввів правильний код і відкрив замок на $item у $name",
+        "action_cheat_blocked": "$name спробував використати чит-команду $cmd",
+        "action_self_config_changed": "$name змінив налаштування замка на <possessive> $item",
+        "action_self_unlocked": "$name ввів правильний код і відкрив замок на <possessive> $item",
+        "action_cooldown": "[PACT] Виявлено部分ове відновлення замків. Автовідновлення призупинено на $minutes хвилин. У разі конфлікту попросіть власника ключа зняти конфліктуючий замок."
+    },
+    "remote": {
+        "reject_not_in_room": "Цільовий гравець зараз не в кімнаті",
+        "reject_min_role": "Ваша роль не відповідає вимогам",
+        "remote_connected": "<b>$name ($num)</b> підключився до вас дистанційно.",
+        "remote_changed": "<b>$name ($num)</b> дистанційно змінив ваш вигляд.",
+        "remote_action": "Вигляд $name було змінено дистанційно",
+        "remote_desc": "Підключитися до гравця через пульт PACT",
+        "remote_example": "Приклад: /connect <номер учасника>",
+        "remote_updating": "Оновлення вигляду...",
+        "remote_applied": "Зміни застосовано",
+        "remote_not_applied": "Зміни не застосовано",
+        "remote_connecting": "Підключення...",
+        "remote_member_num": "Номер учасника: $num",
+        "remote_no_connection": "З'єднання не встановлено",
+        "remote_error_generic": "Щось пішло не так. Може, гравець не в мережі або не використовує PACT?",
+        "remote_rejected": "Підключення відхилено"
+    }
+}
